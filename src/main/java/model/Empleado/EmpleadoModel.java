@@ -11,21 +11,13 @@ public class EmpleadoModel {
     private double salario;
     private Date fecha_contratacion;
 
-    public EmpleadoModel(int empleado_id, String nombre, String apellido, String cargo, double salario, Date fecha_contratacion) {
-        this.empleado_id = empleado_id;
+    public EmpleadoModel(String nombre, String apellido, String cargo, double salario, Date fecha_contratacion) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;
         this.salario = salario;
         this.fecha_contratacion = fecha_contratacion;
-    }
-
-    public int getEmpleado_id() {
-        return empleado_id;
-    }
-
-    public void setEmpleado_id(int empleado_id) {
-        this.empleado_id = empleado_id;
     }
 
     public String getNombre() {

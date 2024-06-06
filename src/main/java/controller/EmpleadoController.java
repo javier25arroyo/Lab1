@@ -20,8 +20,8 @@ public class EmpleadoController {
         this.empleadoDAO = new EmpleadoDAO(connection);
     }
 
-    public void agregarEmpleado(int empleado_id ,String nombre, String apellido, String telefono, String direccion, String cargo, Date fecha_ingreso){
-        EmpleadoModel datos = new EmpleadoModel(empleado_id ,nombre, apellido, telefono, direccion, cargo, fecha_ingreso);
+    public void agregarEmpleado(String nombre, String apellido, String cargo,double salario, Date fecha_contratacion){
+        EmpleadoModel datos = new EmpleadoModel(nombre, apellido, cargo, salario, fecha_contratacion);
 
         try{
             empleadoDAO.agregarEmpleado(datos);

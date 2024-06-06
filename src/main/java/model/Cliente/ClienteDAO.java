@@ -12,7 +12,7 @@ public class ClienteDAO {
     }
 
     public void agregarClientes(ClienteModel objeto) throws SQLException {
-        String query = "INSERT INTO `clientes`(`nombre`, `apellido`, `email`, `telefono`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `clientes_JA_EM`(`nombre`, `apellido`, `email`, `telefono`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, objeto.getNombre());
             stmt.setString(2, objeto.getApellido());

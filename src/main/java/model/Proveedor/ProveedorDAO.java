@@ -2,6 +2,7 @@ package model.Proveedor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ProveedorDAO {
     private Connection connection;
@@ -10,8 +11,8 @@ public class ProveedorDAO {
         this.connection = connection;
     }
 
-    public void agregarProveedor(ProveedorModel objeto) throws Exception {
-        String query = "INSERT INTO `proveedores` (`nombre`, `direccion`, `telefono`, `email`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
+    public void agregarProveedor(ProveedorModel objeto) throws SQLException {
+        String query = "INSERT INTO `proveedores_JA_EM` (`nombre`, `direccion`, `telefono`, `email`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, objeto.getNombre());
             stmt.setString(2, objeto.getDireccion());

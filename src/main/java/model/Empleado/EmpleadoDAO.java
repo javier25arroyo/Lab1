@@ -12,14 +12,14 @@ public class EmpleadoDAO {
     }
 
     public void agregarEmpleado(EmpleadoModel objeto) throws SQLException {
-        String query = "INSERT INTO `empleados_JA_EM`(`empleado_id` ,`nombre`, `apellido`, `cargo`, `salario`, `fecha_contratacion`) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `empleados_JA_EM`(`nombre`, `apellido`, `cargo`, `salario`, `fecha_contratacion`) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, objeto.getEmpleado_id());
-            stmt.setString(2, objeto.getNombre());
-            stmt.setString(3, objeto.getApellido());
-            stmt.setString(4, objeto.getCargo());
-            stmt.setDouble(5, objeto.getSalario());
-            stmt.setDate(6, objeto.getFecha_contratacion());
+            stmt.setString(1, objeto.getNombre());
+            stmt.setString(2, objeto.getApellido());
+            stmt.setString(3, objeto.getCargo());
+            stmt.setDouble(4, objeto.getSalario());
+            stmt.setDate(5, objeto.getFecha_contratacion());
+            stmt.executeUpdate();
         }
     }
 }

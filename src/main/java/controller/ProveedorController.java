@@ -24,7 +24,7 @@ public class ProveedorController {
         ProveedorModel datos = new ProveedorModel(nombre, direccion, telefono, email, fecha_registro);
 
         try{
-            proveedorDAO agregarProveedor(datos);
+            proveedorDAO.agregarProveedor(datos);
             viewConsole.showMessage("Inserccion de datos correcta");
         }catch (SQLException e){
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
