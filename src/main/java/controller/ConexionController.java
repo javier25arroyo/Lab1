@@ -21,7 +21,7 @@ public class ConexionController {
         if (connection!=null){
             try{
                 connection.close();
-                viewConsole.showMessage("Conexion Establecida");
+                viewConsole.showMessage("Conexion Establecida\n");
             }catch (SQLException e){
                 viewConsole.errorMessage("Error al conectar"+e.getMessage());
             }

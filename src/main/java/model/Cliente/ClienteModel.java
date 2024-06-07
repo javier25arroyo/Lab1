@@ -3,8 +3,6 @@ package model.Cliente;
 import java.sql.Date;
 
 public class ClienteModel {
-
-        private int id;
         private String nombre;
         private String apellido;
         private String email;
@@ -19,13 +17,6 @@ public class ClienteModel {
             this.fechaRegistro = fechaRegistro;
         }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;

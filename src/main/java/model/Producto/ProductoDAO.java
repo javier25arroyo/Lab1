@@ -10,7 +10,7 @@ public class ProductoDAO {
         this.connection = connection;
     }
         public void agregarProducto(ProductoModel objeto) throws SQLException {
-            String query = "INSERT INTO `productos_JA_EM`(`nombre`, `descripcion`, `precio`, `stock`, `fecha_creacion`) VALUES (? ,?, ?, ?, ?, ?)";
+            String query = "INSERT INTO `productos_JA_EM`(`nombre`, `descripcion`, `precio`, `stock`, `fecha_creacion`) VALUES (? ,?, ?, ?, ?)";
             try (var stmt = connection.prepareStatement(query)) {
                 stmt.setString(1, objeto.getNombre());
                 stmt.setString(2, objeto.getDescripcion());

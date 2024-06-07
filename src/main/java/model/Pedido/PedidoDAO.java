@@ -11,12 +11,12 @@ public class PedidoDAO {
    }
 
     public void agregarPedido(PedidoModel objeto) throws SQLException {
-        String query = "INSERT INTO `pedidos_JA_EM`( `idCliente`, `fecha_pedido`, `total`, `estado`) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO `pedidos_JA_EM`(`idCliente`, `fecha_pedido`, `total`, `estado`) VALUES (?, ?, ?, ?)";
         try (var stmt = connection.prepareStatement(query)) {
-            stmt.setInt(2, objeto.getIdEmpleado());
-            stmt.setDate(3, objeto.getFechaPedido());
-            stmt.setDouble(4, objeto.getTotal());
-            stmt.setString(5, objeto.getEstado());
+            stmt.setInt(1, objeto.getIdCliente());
+            stmt.setDate(2, objeto.getFechaPedido());
+            stmt.setDouble(3, objeto.getTotal());
+            stmt.setString(4, objeto.getEstado());
             stmt.executeUpdate();
         }
     }

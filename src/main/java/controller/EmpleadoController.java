@@ -25,7 +25,7 @@ public class EmpleadoController {
 
         try{
             empleadoDAO.agregarEmpleado(datos);
-            viewConsole.showMessage("Inserccion de datos correcta");
+            viewConsole.showMessage("Inserccion de datos correcta\n");
         }catch (SQLException e){
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
         }
