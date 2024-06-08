@@ -28,11 +28,11 @@ public class Main {
         empleadoController.agregarEmpleado(nombreE,apellidoE,cargo,salario,fecha_contratacion);
 
         PedidoController pedidoController = new PedidoController(consoleView);
-        int idCliente= 4;
+        int clienteId= 4;
         Date fechaPedido=Date.valueOf("2024-06-07");
         double total=1000;
-        String estado="EnProceso";
-        pedidoController.agregarPedido(idCliente,fechaPedido,total,estado);
+        String estado="En Proceso";
+        pedidoController.agregarPedido(clienteId,fechaPedido,total,estado);
 
         ProductoController productoController = new ProductoController(consoleView);
         String nombreProducto="Laptop";

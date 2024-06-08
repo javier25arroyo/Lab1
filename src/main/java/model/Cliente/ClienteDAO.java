@@ -26,7 +26,6 @@ public class ClienteDAO {
 
 /*
 CREATE TABLE clientes_JA_EM (
-    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,

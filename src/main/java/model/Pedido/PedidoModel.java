@@ -3,24 +3,24 @@ package model.Pedido;
 import java.sql.Date;
 
 public class PedidoModel {
-    private int idCliente;
+    private int clienteId;
     private Date fechaPedido;
     private double total;
     private String estado;
 
-    public PedidoModel(int idCliente, Date fechaPedido, double total, String estado) {
-        this.idCliente = idCliente;
+    public PedidoModel(int clienteId, Date fechaPedido, double total, String estado) {
+        this.clienteId = clienteId;
         this.fechaPedido = fechaPedido;
         this.total = total;
         this.estado = estado;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getClienteId() {
+        return clienteId;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(int clienteId) {
+        this.clienteId = clienteId;
     }
 
     public Date getFechaPedido() {

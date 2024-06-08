@@ -14,20 +14,19 @@ public class PedidoController {
 
     private PedidoDAO pedidoDAO;
 
-    public PedidoController(ConsoleView viewConsole){
+    public PedidoController(ConsoleView viewConsole) {
         this.viewConsole = viewConsole;
         Connection connection = Conexion.getConnection();
         this.pedidoDAO = new PedidoDAO(connection);
     }
 
-    public void agregarPedido (int idCliente, Date fechaPedido, double total, String estado){
-        PedidoModel datos = new PedidoModel(idCliente, fechaPedido, total, estado);
-
-        try{
+    public void agregarPedido(int clienteId, Date fechaPedido, double total, String estado) {
+        PedidoModel datos = new PedidoModel(clienteId, fechaPedido, total, estado);
+        try {
             pedidoDAO.agregarPedido(datos);
-            viewConsole.showMessage("Inserccion de datos correcta\n");
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
+            viewConsole.showMessage("Pedido agregado correctamente\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al agregar el pedido" + e.getMessage());
         }
     }
 }
