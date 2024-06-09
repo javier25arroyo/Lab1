@@ -3,6 +3,7 @@ package model.Producto;
 import java.sql.Date;
 
 public class ProductoModel {
+    private int producto_id;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -15,6 +16,14 @@ public class ProductoModel {
         this.precio = precio;
         this.stock = stock;
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public int getProducto_id() {
+        return producto_id;
+    }
+
+    public void setProducto_id(int producto_id) {
+        this.producto_id = producto_id;
     }
 
     public String getNombre() {

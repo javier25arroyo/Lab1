@@ -30,4 +30,12 @@ public class ProveedorController {
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
         }
     }
+    public void eliminarProveedor(int proveedor_id) {
+        try {
+            proveedorDAO.eliminarProveedor(proveedor_id);
+            viewConsole.showMessage("Eliminación de proveedor correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
 }

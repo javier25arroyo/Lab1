@@ -29,4 +29,12 @@ public class PedidoController {
             viewConsole.errorMessage("Error al agregar el pedido" + e.getMessage());
         }
     }
+    public void eliminarPedido(int pedido_id) {
+        try {
+            pedidoDAO.eliminarPedido(pedido_id);
+            viewConsole.showMessage("Eliminación de pedido correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
 }

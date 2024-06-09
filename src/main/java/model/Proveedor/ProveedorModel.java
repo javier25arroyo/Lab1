@@ -3,7 +3,7 @@ package model.Proveedor;
 import java.sql.Date;
 
 public class ProveedorModel {
-    private int id;
+    private int proveedor_id;
     private String nombre;
     private String direccion;
     private String telefono;
@@ -18,12 +18,12 @@ public class ProveedorModel {
         this.fecha_registro = fecha_registro;
     }
 
-    public int getId() {
-        return id;
+    public int getProveedor_id() {
+        return proveedor_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProveedor_id(int proveedor_id) {
+        this.proveedor_id = proveedor_id;
     }
 
     public String getNombre() {

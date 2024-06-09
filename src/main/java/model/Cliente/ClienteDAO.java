@@ -22,6 +22,13 @@ public class ClienteDAO {
             stmt.executeUpdate();
         }
     }
+    public void eliminarCliente(int cliente_id) throws SQLException {
+        String query = "DELETE FROM `clientes_JA_EM` WHERE `cliente_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, cliente_id);
+            stmt.executeUpdate();
+        }
+    }
 }
 
 /*

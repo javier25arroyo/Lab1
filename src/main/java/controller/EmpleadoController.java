@@ -30,4 +30,12 @@ public class EmpleadoController {
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
         }
     }
+    public void eliminarEmpleado(int empleado_id) {
+        try {
+            empleadoDAO.eliminarEmpleado(empleado_id);
+            viewConsole.showMessage("Eliminación de empleado correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
 }

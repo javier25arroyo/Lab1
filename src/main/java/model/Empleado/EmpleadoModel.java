@@ -3,6 +3,7 @@ package model.Empleado;
 import java.sql.Date;
 
 public class EmpleadoModel {
+    private int empleado_id;
     private String nombre;
     private String apellido;
     private String cargo;
@@ -15,6 +16,14 @@ public class EmpleadoModel {
         this.cargo = cargo;
         this.salario = salario;
         this.fecha_contratacion = fecha_contratacion;
+    }
+
+    public int getEmpleado_id() {
+        return empleado_id;
+    }
+
+    public void setEmpleado_id(int empleado_id) {
+        this.empleado_id = empleado_id;
     }
 
     public String getNombre() {

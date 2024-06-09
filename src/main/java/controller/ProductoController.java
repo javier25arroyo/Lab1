@@ -30,5 +30,13 @@ public class ProductoController {
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
         }
     }
+    public void eliminarProducto(int producto_id) {
+        try {
+            productoDAO.eliminarProducto(producto_id);
+            viewConsole.showMessage("Eliminación de producto correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
 
 }

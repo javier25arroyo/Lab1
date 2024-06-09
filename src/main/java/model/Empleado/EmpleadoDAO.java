@@ -22,6 +22,13 @@ public class EmpleadoDAO {
             stmt.executeUpdate();
         }
     }
+    public void eliminarEmpleado(int empleado_id) throws SQLException {
+        String query = "DELETE FROM `empleados_JA_EM` WHERE `empleado_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, empleado_id);
+            stmt.executeUpdate();
+        }
+    }
 }
 
 /*

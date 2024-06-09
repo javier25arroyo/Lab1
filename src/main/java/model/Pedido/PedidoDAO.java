@@ -21,6 +21,13 @@ public class PedidoDAO {
             stmt.executeUpdate();
         }
     }
+    public void eliminarPedido(int pedido_id) throws SQLException {
+        String query = "DELETE FROM `pedidos_JA_EM` WHERE `pedido_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, pedido_id);
+            stmt.executeUpdate();
+        }
+    }
 }
 
 /*CREATE TABLE pedidos_JA_EM (
