@@ -1,6 +1,7 @@
 package controller;
 
 import model.Conexion;
+import model.Empleado.EmpleadoModel;
 import model.Producto.ProductoDAO;
 import model.Producto.ProductoModel;
 import view.ConsoleView;
@@ -8,6 +9,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProductoController {
     private ConsoleView viewConsole;
@@ -28,6 +30,35 @@ public class ProductoController {
             viewConsole.showMessage("Inserccion de datos correcta\n");
         }catch (SQLException e){
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
+        }
+    }
+    public void eliminarProducto(int producto_id) {
+        try {
+            productoDAO.eliminarProducto(producto_id);
+            viewConsole.showMessage("Eliminación de producto correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
+
+    public void actualizarProducto(int producto_id, String nombre, String descripcion, double precio, int stock, Date fecha_creacion) {
+        ProductoModel datos = new ProductoModel(nombre, descripcion, precio, stock, fecha_creacion);
+        datos.setProducto_id(producto_id);
+        try {
+            productoDAO.actualizarProducto(datos);
+            viewConsole.showMessage("Actualización de producto correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al actualizar producto: " + e.getMessage());
+        }
+    }
+    public void obtenerTodosLosProdutos(){
+        try {
+            List<ProductoModel> productos=productoDAO.obtenerTodosLosProductos();
+            for (ProductoModel producto: productos){
+                viewConsole.showMessage(producto.toString()+"\n");
+            }
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
         }
     }
 

@@ -3,7 +3,7 @@ package model.Proveedor;
 import java.sql.Date;
 
 public class ProveedorModel {
-    private int id;
+    private int proveedor_id;
     private String nombre;
     private String direccion;
     private String telefono;
@@ -18,12 +18,21 @@ public class ProveedorModel {
         this.fecha_registro = fecha_registro;
     }
 
-    public int getId() {
-        return id;
+    public ProveedorModel(int proveedor_id, String nombre, String direccion, String telefono, String email, Date fecha_registro) {
+        this.proveedor_id = proveedor_id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.fecha_registro = fecha_registro;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getProveedor_id() {
+        return proveedor_id;
+    }
+
+    public void setProveedor_id(int proveedor_id) {
+        this.proveedor_id = proveedor_id;
     }
 
     public String getNombre() {
@@ -64,6 +73,18 @@ public class ProveedorModel {
 
     public void setFecha_registro(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
+    }
+
+    @Override
+    public String toString() {
+        return "ProveedorModel{" +
+                "proveedor_id=" + proveedor_id +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", fecha_registro=" + fecha_registro +
+                '}';
     }
 }
 

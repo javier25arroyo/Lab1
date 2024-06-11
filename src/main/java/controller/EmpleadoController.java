@@ -3,11 +3,13 @@ package controller;
 import model.Conexion;
 import model.Empleado.EmpleadoDAO;
 import model.Empleado.EmpleadoModel;
+import model.Pedido.PedidoModel;
 import view.ConsoleView;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class EmpleadoController {
     private ConsoleView viewConsole;
@@ -28,6 +30,33 @@ public class EmpleadoController {
             viewConsole.showMessage("Inserccion de datos correcta\n");
         }catch (SQLException e){
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
+        }
+    }
+    public void eliminarEmpleado(int empleado_id) {
+        try {
+            empleadoDAO.eliminarEmpleado(empleado_id);
+            viewConsole.showMessage("Eliminación de empleado correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
+
+    public void actualizarEmpleado(EmpleadoModel empleado) {
+        try {
+            empleadoDAO.actualizarEmpleado(empleado);
+            viewConsole.showMessage("Actualización de empleado correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al actualizar empleado: " + e.getMessage());
+        }
+    }
+    public void obtenerTodosLosEmpleados(){
+        try {
+            List<EmpleadoModel> empleados=empleadoDAO.obtenerTodosLosEmpleados();
+            for (EmpleadoModel empleado: empleados){
+                viewConsole.showMessage(empleado.toString()+"\n");
+            }
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
         }
     }
 }
