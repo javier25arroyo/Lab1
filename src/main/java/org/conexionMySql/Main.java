@@ -2,163 +2,347 @@ package org.conexionMySql;
 
 import controller.*;
 import view.ConsoleView;
-
-import java.io.IOException;
 import java.util.Scanner;
 import java.sql.Date;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    ConsoleView viewConsole = new ConsoleView();
     static ConsoleView consoleView = new ConsoleView();
-    public static void main(String[] args)throws Exception, IOException {
 
+    public static void main(String[] args) throws Exception {
         String opcion = "";
         while (!opcion.equals("s")) {
-            mostrarMenu();
+            mostrarMenuPrincipal();
             System.out.println("Ingrese la opción deseada: ");
             opcion = scanner.nextLine();
-            ejecutarOpcion(opcion);
+            ejecutarOpcionMenuPrincipal(opcion);
         }
+    }
 
+    public static void mostrarMenuPrincipal() {
+        System.out.println("\u001b[33mMenú Principal:\u001b[0m");
+        System.out.println("1. Cliente");
+        System.out.println("2. Empleado");
+        System.out.println("3. Pedido");
+        System.out.println("4. Producto");
+        System.out.println("5. Proveedor");
+        System.out.println("0. Salir");
     }
-    public static void mostrarMenu(){
-        System.out.println("\u001b[33mMenú del programa:\u001b[0m");
-        System.out.println("1. Registrar Cliente");
-        System.out.println("2. Registrar Empleado");
-        System.out.println("3. Registrar pedido");
-        System.out.println("4. Registrar producto");
-        System.out.println("5. Registrar proveedor");
-        System.out.println("6. Eliminar cliente");
-        System.out.println("7. Eliminar empleado");
-        System.out.println("8. Eliminar pedido");
-        System.out.println("9. Eliminar producto");
-        System.out.println("10. Eliminar proveedor");
-        System.out.println("s. Salir");
-    }
-    public static void ejecutarOpcion(String opcion)throws Exception{
-        switch(opcion){
+
+    public static void ejecutarOpcionMenuPrincipal(String opcion) throws Exception {
+        switch (opcion) {
             case "1":
-                registroCliente();
+                mostrarSubmenu("Cliente");
                 break;
             case "2":
-                registroEmpleado();
+                mostrarSubmenu("Empleado");
                 break;
             case "3":
-                registroPedido();
+                mostrarSubmenu("Pedido");
+                break;
             case "4":
-                registroProducto();
+                mostrarSubmenu("Producto");
                 break;
             case "5":
-                registroProveedor();
+                mostrarSubmenu("Proveedor");
                 break;
-            case "6":
-                EliminarCliente();
-                break;
-            case "7":
-                EliminarEmpleado();
-                break;
-            case "8":
-                EliminarPedido();
-                break;
-            case "9":
-                EliminarProducto();
-                break;
-            case "10":
-                EliminarProveedor();
-                break;
-            case "s":
+            case "0":
                 System.out.println("Saliendo del Programa");
+                break;
+            default:
+                System.out.println("Opción no válida.");
                 break;
         }
     }
-    public static void registroCliente(){
-        ConsoleView viewConsole = new ConsoleView();
-        ConsoleView consoleView = new ConsoleView();
+
+    public static void mostrarSubmenu(String entidad) throws Exception {
+        String opcion = "";
+        while (!opcion.equals("v")) {
+            System.out.println("\u001b[33mMenú de " + entidad + ":\u001b[0m");
+            System.out.println("1. Registrar " + entidad);
+            System.out.println("2. Retornar " + entidad);
+            System.out.println("3. Actualizar " + entidad);
+            System.out.println("4. Eliminar " + entidad);
+            System.out.println("v. Volver");
+            System.out.println("Ingrese la opción deseada: ");
+            opcion = scanner.nextLine();
+            ejecutarOpcionSubmenu(entidad, opcion);
+        }
+    }
+
+    public static void ejecutarOpcionSubmenu(String entidad, String opcion) throws Exception {
+        switch (entidad) {
+            case "Cliente":
+                switch (opcion) {
+                    case "1":
+                        registroCliente();
+                        break;
+                    case "2":
+                        retornarCliente();
+                        break;
+                    case "3":
+                        actualizarCliente();
+                        break;
+                    case "4":
+                        eliminarCliente();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Empleado":
+                switch (opcion) {
+                    case "1":
+                        registroEmpleado();
+                        break;
+                    case "2":
+                        retornarEmpleado();
+                        break;
+                    case "3":
+                        actualizarEmpleado();
+                        break;
+                    case "4":
+                        eliminarEmpleado();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Pedido":
+                switch (opcion) {
+                    case "1":
+                        registroPedido();
+                        break;
+                    case "2":
+                        retornarPedido();
+                        break;
+                    case "3":
+                        actualizarPedido();
+                        break;
+                    case "4":
+                        eliminarPedido();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Producto":
+                switch (opcion) {
+                    case "1":
+                        registroProducto();
+                        break;
+                    case "2":
+                        retornarProducto();
+                        break;
+                    case "3":
+                        actualizarProducto();
+                        break;
+                    case "4":
+                        eliminarProducto();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Proveedor":
+                switch (opcion) {
+                    case "1":
+                        registroProveedor();
+                        break;
+                    case "2":
+                        retornarProveedor();
+                        break;
+                    case "3":
+                        actualizarProveedor();
+                        break;
+                    case "4":
+                        eliminarProveedor();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+        }
+    }
+
+    public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
         String nombre = "Alberto";
-        String apellido="Calvo";
-        String email="celestecalvo@gmail.com";
-        String telefono="77777777";
-        Date fecha_registro= Date.valueOf("2024-06-07");
+        String apellido = "Calvo";
+        String email = "celestecalvo@gmail.com";
+        String telefono = "77777777";
+        Date fecha_registro = Date.valueOf("2024-06-07");
         clienteController.agregarClientes(nombre, apellido, email, telefono, fecha_registro);
     }
-    public static void registroEmpleado() {
-        ConsoleView viewConsole = new ConsoleView();
-        ConsoleView consoleView = new ConsoleView();
-        EmpleadoController empleadoController = new EmpleadoController(consoleView);
-        String nombreE="Juan";
-        String apellidoE="Rodriguez";
-        String cargo="Jefe";
-        double salario=22500;
-        Date fecha_contratacion= Date.valueOf("2024-08-22");
-        empleadoController.agregarEmpleado(nombreE,apellidoE,cargo,salario,fecha_contratacion);
+
+    public static void retornarCliente() {
+
     }
-    public static void registroPedido() {
-        ConsoleView viewConsole = new ConsoleView();
-        ConsoleView consoleView = new ConsoleView();
-        PedidoController pedidoController = new PedidoController(consoleView);
-        int clienteId= 4;
-        Date fechaPedido=Date.valueOf("2024-06-07");
-        double total=1000;
-        String estado="En Proceso";
-        pedidoController.agregarPedido(clienteId,fechaPedido,total,estado);
-    }
-    public static void registroProducto() {
-        ConsoleView viewConsole = new ConsoleView();
-        ConsoleView consoleView = new ConsoleView();
-        ProductoController productoController = new ProductoController(consoleView);
-        String nombreProducto="Laptop";
-        String descripcion="Laptop HP";
-        double precio=500;
-        int stock=10;
-        Date fecha_creacion=Date.valueOf("2024-06-07");
-        productoController.agregarProducto(nombreProducto,descripcion,precio,stock,fecha_creacion);
-    }
-    public static void registroProveedor() {
-        ConsoleView viewConsole = new ConsoleView();
-        ConsoleView consoleView = new ConsoleView();
-        ProveedorController proveedorController = new ProveedorController(consoleView);
-        String nombreP="Javier";
-        String direccion="Cartago";
-        String telefonoP="88888888";
-        String emailP="javier@gmail.com";
-        Date fecha_registroP=Date.valueOf("2025-12-25");
-        proveedorController.agregarProveedor(nombreP,direccion,telefonoP,emailP,fecha_registroP);
-    }
-    public static void EliminarCliente(){
+
+    public static void actualizarCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
-        int id_cliente=0;
-        System.out.println("Digite el id del cliente a eliminar:");
+        int id_cliente = 0;
+        System.out.println("Digite el id del cliente a actualizar:");
         id_cliente=Integer.parseInt(scanner.nextLine());
+        String nombre = "Alberto";
+        String apellido="Calvo";
+        String email= "celestecalvo@gmail.com";
+    }
+
+    public static void eliminarCliente() {
+        ClienteController clienteController = new ClienteController(consoleView);
+        int id_cliente = 0;
+        System.out.println("Digite el id del cliente a eliminar:");
+        id_cliente = Integer.parseInt(scanner.nextLine());
         clienteController.eliminarCliente(id_cliente);
     }
-    public static void EliminarEmpleado(){
-        EmpleadoController empleadoController=new EmpleadoController(consoleView);
-        int id_empleado=0;
+
+    public static void registroEmpleado() {
+        EmpleadoController empleadoController = new EmpleadoController(consoleView);
+        String nombre = "Juan";
+        String apellido = "Rodriguez";
+        String cargo = "Jefe";
+        double salario = 22500;
+        Date fecha_contratacion = Date.valueOf("2024-08-22");
+        empleadoController.agregarEmpleado(nombre, apellido, cargo, salario, fecha_contratacion);
+    }
+
+    public static void retornarEmpleado() {
+
+    }
+
+    public static void actualizarEmpleado() {
+        EmpleadoController empleadoController = new EmpleadoController(consoleView);
+        int id_empleado = 0;
+        System.out.println("Digite el id del empleado a actualizar:");
+        id_empleado = Integer.parseInt(scanner.nextLine());
+        String nombre = "Juan";
+        String apellido = "Rodriguez";
+        String cargo = "Jefe";
+        double salario = 22500;
+        Date fecha_contratacion = Date.valueOf("2024-08-22");
+    }
+
+    public static void eliminarEmpleado() {
+        EmpleadoController empleadoController = new EmpleadoController(consoleView);
+        int id_empleado = 0;
         System.out.println("Digite el id del empleado a eliminar:");
-        id_empleado=Integer.parseInt(scanner.nextLine());
+        id_empleado = Integer.parseInt(scanner.nextLine());
         empleadoController.eliminarEmpleado(id_empleado);
     }
-    public static void EliminarPedido(){
-        PedidoController pedidoController=new PedidoController(consoleView);
-        int id_pedido=0;
+
+    public static void registroPedido() {
+        PedidoController pedidoController = new PedidoController(consoleView);
+        int clienteId = 4;
+        Date fechaPedido = Date.valueOf("2024-06-07");
+        double total = 1000;
+        String estado = "En Proceso";
+        pedidoController.agregarPedido(clienteId, fechaPedido, total, estado);
+    }
+
+    public static void retornarPedido() {
+
+    }
+
+    public static void actualizarPedido() {
+        PedidoController pedidoController = new PedidoController(consoleView);
+        int id_pedido = 0;
+        System.out.println("Digite el id del pedido a actualizar:");
+        id_pedido = Integer.parseInt(scanner.nextLine());
+        int clienteId = 4;
+        Date fechaPedido = Date.valueOf("2024-06-07");
+        double total = 1000;
+        String estado = "En Proceso";
+    }
+
+    public static void eliminarPedido() {
+        PedidoController pedidoController = new PedidoController(consoleView);
+        int id_pedido = 0;
         System.out.println("Digite el id del pedido a eliminar:");
-        id_pedido=Integer.parseInt(scanner.nextLine());
+        id_pedido = Integer.parseInt(scanner.nextLine());
         pedidoController.eliminarPedido(id_pedido);
     }
-    public static void EliminarProducto(){
-        ProductoController productoController=new ProductoController(consoleView);
-        int id_producto=0;
+
+    public static void registroProducto() {
+        ProductoController productoController = new ProductoController(consoleView);
+        String nombreProducto = "Laptop";
+        String descripcion = "Laptop HP";
+        double precio = 500;
+        int stock = 10;
+        Date fecha_creacion = Date.valueOf("2024-06-07");
+        productoController.agregarProducto(nombreProducto, descripcion, precio, stock, fecha_creacion);
+    }
+
+    public static void retornarProducto() {
+
+    }
+
+    public static void actualizarProducto() {
+        ProductoController productoController = new ProductoController(consoleView);
+        int id_producto = 0;
+        System.out.println("Digite el id del producto a actualizar:");
+        id_producto = Integer.parseInt(scanner.nextLine());
+        String nombreProducto = "Laptop";
+        String descripcion = "Laptop HP";
+        double precio = 500;
+        int stock = 10;
+        Date fecha_creacion = Date.valueOf("2024-06-07");
+    }
+
+    public static void eliminarProducto() {
+        ProductoController productoController = new ProductoController(consoleView);
+        int id_producto = 0;
         System.out.println("Digite el id del producto a eliminar:");
-        id_producto=Integer.parseInt(scanner.nextLine());
+        id_producto = Integer.parseInt(scanner.nextLine());
         productoController.eliminarProducto(id_producto);
     }
-    public static void EliminarProveedor(){
-        ProveedorController proveedorController=new ProveedorController(consoleView);
-        int id_proveedor=0;
+
+    public static void registroProveedor() {
+        ProveedorController proveedorController = new ProveedorController(consoleView);
+        String nombre = "Javier";
+        String direccion = "Cartago";
+        String telefono = "88888888";
+        String email = "javier@gmail.com";
+        Date fecha_registro = Date.valueOf("2025-12-25");
+        proveedorController.agregarProveedor(nombre, direccion, telefono, email, fecha_registro);
+    }
+
+    public static void retornarProveedor() {
+
+    }
+
+    public static void actualizarProveedor() {
+        ProveedorController proveedorController = new ProveedorController(consoleView);
+        int id_proveedor = 0;
+        System.out.println("Digite el id del proveedor a actualizar:");
+        id_proveedor = Integer.parseInt(scanner.nextLine());
+        String nombre = "Javier";
+        String direccion = "Cartago";
+        String telefono = "88888888";
+        String email = "javier@gmail.com";
+        Date fecha_registro = Date.valueOf("2025-12-25");
+    }
+
+    public static void eliminarProveedor() {
+        ProveedorController proveedorController = new ProveedorController(consoleView);
+        int id_proveedor = 0;
         System.out.println("Digite el id del proveedor a eliminar:");
-        id_proveedor=Integer.parseInt(scanner.nextLine());
+        id_proveedor = Integer.parseInt(scanner.nextLine());
         proveedorController.eliminarProveedor(id_proveedor);
     }
 }

@@ -38,4 +38,14 @@ public class EmpleadoController {
             viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
         }
     }
+
+    public void actualizarEmpleado(EmpleadoModel empleado) {
+        try {
+            empleadoDAO.actualizarEmpleado(empleado);
+            viewConsole.showMessage("Actualización de empleado correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al actualizar empleado: " + e.getMessage());
+        }
+    }
+
 }

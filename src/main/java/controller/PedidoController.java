@@ -37,4 +37,13 @@ public class PedidoController {
             viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
         }
     }
+
+    public void actualizarPedido(PedidoModel pedido) {
+        try {
+            pedidoDAO.actualizarPedido(pedido);
+            viewConsole.showMessage("Actualización de pedido correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al actualizar pedido: " + e.getMessage());
+        }
+    }
 }

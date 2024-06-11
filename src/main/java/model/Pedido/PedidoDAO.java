@@ -28,6 +28,18 @@ public class PedidoDAO {
             stmt.executeUpdate();
         }
     }
+
+    public void actualizarPedido(PedidoModel pedido) throws SQLException {
+        String query = "UPDATE `pedidos_JA_EM` SET `cliente_id` = ?, `fecha_pedido` = ?, `total` = ?, `estado` = ? WHERE `pedido_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, pedido.getClienteId());
+            stmt.setDate(2, pedido.getFechaPedido());
+            stmt.setDouble(3, pedido.getTotal());
+            stmt.setString(4, pedido.getEstado());
+            stmt.setInt(5, pedido.getPedido_id());
+            stmt.executeUpdate();
+        }
+    }
 }
 
 /*CREATE TABLE pedidos_JA_EM (

@@ -29,6 +29,19 @@ public class EmpleadoDAO {
             stmt.executeUpdate();
         }
     }
+
+    public void actualizarEmpleado(EmpleadoModel empleado) throws SQLException {
+        String query = "UPDATE `empleados_JA_EM` SET `nombre` = ?, `apellido` = ?, `cargo` = ?, `salario` = ?, `fecha_contratacion` = ? WHERE `empleado_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, empleado.getNombre());
+            stmt.setString(2, empleado.getApellido());
+            stmt.setString(3, empleado.getCargo());
+            stmt.setDouble(4, empleado.getSalario());
+            stmt.setDate(5, empleado.getFecha_contratacion());
+            stmt.setInt(6, empleado.getEmpleado_id());
+            stmt.executeUpdate();
+        }
+    }
 }
 
 /*

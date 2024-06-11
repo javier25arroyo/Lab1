@@ -9,6 +9,14 @@ public class PedidoModel {
     private double total;
     private String estado;
 
+    public PedidoModel(int pedido_id, int clienteId, Date fechaPedido, double total, String estado) {
+        this.pedido_id = pedido_id;
+        this.clienteId = clienteId;
+        this.fechaPedido = fechaPedido;
+        this.total = total;
+        this.estado = estado;
+    }
+
     public PedidoModel(int clienteId, Date fechaPedido, double total, String estado) {
         this.clienteId = clienteId;
         this.fechaPedido = fechaPedido;

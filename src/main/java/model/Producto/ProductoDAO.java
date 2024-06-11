@@ -21,10 +21,24 @@ public class ProductoDAO {
                 stmt.executeUpdate();
         }
     }
+
     public void eliminarProducto(int producto_id) throws SQLException {
         String query = "DELETE FROM `productos_JA_EM` WHERE `producto_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, producto_id);
+            stmt.executeUpdate();
+        }
+    }
+
+    public void actualizarProducto(ProductoModel objeto) throws SQLException {
+        String query = "UPDATE `productos_JA_EM` SET `nombre` = ?, `descripcion` = ?, `precio` = ?, `stock` = ?, `fecha_creacion` = ? WHERE `producto_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, objeto.getNombre());
+            stmt.setString(2, objeto.getDescripcion());
+            stmt.setDouble(3, objeto.getPrecio());
+            stmt.setInt(4, objeto.getStock());
+            stmt.setDate(5, objeto.getFecha_creacion());
+            stmt.setInt(6, objeto.getProducto_id());
             stmt.executeUpdate();
         }
     }

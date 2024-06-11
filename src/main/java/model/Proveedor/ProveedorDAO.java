@@ -22,10 +22,24 @@ public class ProveedorDAO {
             stmt.executeUpdate();
         }
     }
+
     public void eliminarProveedor(int proveedor_id) throws SQLException {
         String query = "DELETE FROM `proveedores_JA_EM` WHERE `proveedor_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, proveedor_id);
+            stmt.executeUpdate();
+        }
+    }
+
+    public void actualizarProveedor(ProveedorModel objeto) throws SQLException {
+        String query = "UPDATE `proveedores_JA_EM` SET `nombre` = ?, `direccion` = ?, `telefono` = ?, `email` = ?, `fecha_registro` = ? WHERE `proveedor_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, objeto.getNombre());
+            stmt.setString(2, objeto.getDireccion());
+            stmt.setString(3, objeto.getTelefono());
+            stmt.setString(4, objeto.getEmail());
+            stmt.setDate(5, objeto.getFecha_registro());
+            stmt.setInt(6, objeto.getProveedor_id());
             stmt.executeUpdate();
         }
     }

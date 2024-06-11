@@ -30,6 +30,16 @@ public class ClienteController {
             viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
         }
     }
+
+    public void actualizarCliente(ClienteModel cliente) {
+        try {
+            clienteDAO.actualizarCliente(cliente);
+            viewConsole.showMessage("Actualización de cliente correcta\n");
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al actualizar cliente: " + e.getMessage());
+        }
+    }
+
     public void eliminarCliente(int cliente_id) {
         try {
             clienteDAO.eliminarCliente(cliente_id);
