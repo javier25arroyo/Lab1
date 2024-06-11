@@ -18,6 +18,15 @@ public class ProductoModel {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public ProductoModel(int producto_id, String nombre, String descripcion, double precio, int stock, Date fecha_creacion) {
+        this.producto_id = producto_id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.stock = stock;
+        this.fecha_creacion = fecha_creacion;
+    }
+
     public int getProducto_id() {
         return producto_id;
     }
@@ -64,5 +73,17 @@ public class ProductoModel {
 
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductoModel{" +
+                "producto_id=" + producto_id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", fecha_creacion=" + fecha_creacion +
+                '}';
     }
 }

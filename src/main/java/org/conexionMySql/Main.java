@@ -191,7 +191,8 @@ public class Main {
     }
 
     public static void retornarCliente() {
-
+        ClienteController clienteController = new ClienteController(consoleView);
+        clienteController.obtenerTodosLosClientes();
     }
 
     public static void actualizarCliente() {
@@ -200,8 +201,11 @@ public class Main {
         System.out.println("Digite el id del cliente a actualizar:");
         id_cliente=Integer.parseInt(scanner.nextLine());
         String nombre = "Alberto";
-        String apellido="Calvo";
+        String apellido="Calvooooooo";
         String email= "celestecalvo@gmail.com";
+        String telefono="22222222";
+        Date fecha_registro=Date.valueOf("2024-12-25");
+        clienteController.actualizarCliente(id_cliente,nombre,apellido,email,telefono,fecha_registro);
     }
 
     public static void eliminarCliente() {
@@ -223,7 +227,8 @@ public class Main {
     }
 
     public static void retornarEmpleado() {
-
+        EmpleadoController empleadoController = new EmpleadoController(consoleView);
+        empleadoController.obtenerTodosLosEmpleados();
     }
 
     public static void actualizarEmpleado() {
@@ -256,7 +261,8 @@ public class Main {
     }
 
     public static void retornarPedido() {
-
+PedidoController pedidoController=new PedidoController(consoleView);
+pedidoController.obtenerTodosLosPedidos();
     }
 
     public static void actualizarPedido() {
@@ -289,7 +295,8 @@ public class Main {
     }
 
     public static void retornarProducto() {
-
+        ProductoController productoController = new ProductoController(consoleView);
+        productoController.obtenerTodosLosProdutos();
     }
 
     public static void actualizarProducto() {
@@ -323,7 +330,8 @@ public class Main {
     }
 
     public static void retornarProveedor() {
-
+        ProveedorController proveedorController = new ProveedorController(consoleView);
+        proveedorController.obtenerTodosLosProveedores();
     }
 
     public static void actualizarProveedor() {

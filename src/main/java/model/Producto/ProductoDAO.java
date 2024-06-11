@@ -1,8 +1,13 @@
 package model.Producto;
 
+import model.Empleado.EmpleadoModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductoDAO {
     private Connection connection;
@@ -41,6 +46,28 @@ public class ProductoDAO {
             stmt.setInt(6, objeto.getProducto_id());
             stmt.executeUpdate();
         }
+    }
+    public List<ProductoModel> obtenerTodosLosProductos()throws SQLException{
+
+        List<ProductoModel> productos= new ArrayList<>();
+
+        String query="SELECT `producto_id`, `nombre`, `descripcion`, `precio`, `stock`, `fecha_creacion` from `productos_JA_EM`";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet rs =stmt.executeQuery();
+            while (rs.next()){
+                ProductoModel producto =new ProductoModel(
+                        rs.getInt("producto_id"),
+                        rs.getString("nombre"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precio"),
+                        rs.getInt("stock"),
+                        rs.getDate("fecha_creacion")
+                );
+                productos.add(producto);
+            }
+        }
+        return productos;
     }
 }
 

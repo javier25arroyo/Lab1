@@ -3,11 +3,13 @@ package controller;
 import model.Cliente.ClienteDAO;
 import model.Cliente.ClienteModel;
 import model.Conexion;
+import model.Empleado.EmpleadoModel;
 import view.ConsoleView;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ClienteController {
     private ConsoleView viewConsole;
@@ -31,7 +33,8 @@ public class ClienteController {
         }
     }
 
-    public void actualizarCliente(ClienteModel cliente) {
+    public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String telefono, Date fecha_registro) {
+        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido, email, telefono, fecha_registro);
         try {
             clienteDAO.actualizarCliente(cliente);
             viewConsole.showMessage("Actualización de cliente correcta\n");
@@ -46,6 +49,16 @@ public class ClienteController {
             viewConsole.showMessage("Eliminación de cliente correcta\n");
         } catch (SQLException e) {
             viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
+        }
+    }
+    public void obtenerTodosLosClientes(){
+        try {
+            List<ClienteModel> clientes=clienteDAO.obtenerTodosLosClientes();
+            for (ClienteModel cliente: clientes){
+                viewConsole.showMessage(cliente.toString()+"\n");
+            }
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
         }
     }
 }

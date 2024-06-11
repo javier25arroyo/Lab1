@@ -18,6 +18,15 @@ public class ClienteModel {
             this.fechaRegistro = fechaRegistro;
         }
 
+    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String telefono, Date fechaRegistro) {
+        this.cliente_id = cliente_id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public int getCliente_id() {
         return cliente_id;
     }
@@ -64,5 +73,17 @@ public class ClienteModel {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteModel{" +
+                "cliente_id=" + cliente_id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                '}';
     }
 }

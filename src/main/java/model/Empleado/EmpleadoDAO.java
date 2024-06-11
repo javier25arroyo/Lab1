@@ -1,8 +1,13 @@
 package model.Empleado;
 
+import model.Pedido.PedidoModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpleadoDAO {
     private Connection connection;
@@ -41,6 +46,28 @@ public class EmpleadoDAO {
             stmt.setInt(6, empleado.getEmpleado_id());
             stmt.executeUpdate();
         }
+    }
+    public List<EmpleadoModel> obtenerTodosLosEmpleados()throws SQLException{
+
+        List<EmpleadoModel> empleados= new ArrayList<>();
+
+        String query="SELECT `empleado_id`, `nombre`, `apellido`, `cargo`, `salario`, `fecha_contratacion` from `empleados_JA_EM`";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet rs =stmt.executeQuery();
+            while (rs.next()){
+                EmpleadoModel empleado =new EmpleadoModel(
+                        rs.getInt("empleado_id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("cargo"),
+                        rs.getDouble("salario"),
+                        rs.getDate("fecha_contratacion")
+                );
+                empleados.add(empleado);
+            }
+        }
+        return empleados;
     }
 }
 

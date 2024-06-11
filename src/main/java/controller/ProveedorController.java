@@ -1,6 +1,7 @@
 package controller;
 
 import model.Conexion;
+import model.Empleado.EmpleadoModel;
 import model.Proveedor.ProveedorDAO;
 import model.Proveedor.ProveedorModel;
 import view.ConsoleView;
@@ -8,6 +9,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProveedorController {
     private ConsoleView viewConsole;
@@ -48,6 +50,16 @@ public class ProveedorController {
             viewConsole.showMessage("Actualización de proveedor correcta\n");
         } catch (SQLException e) {
             viewConsole.errorMessage("Error al actualizar proveedor: " + e.getMessage());
+        }
+    }
+    public void obtenerTodosLosProveedores(){
+        try {
+            List<ProveedorModel> proveedores=proveedorDAO.obtenerTodosLosProveedores();
+            for (ProveedorModel proveedor: proveedores){
+                viewConsole.showMessage(proveedor.toString()+"\n");
+            }
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
         }
     }
 }

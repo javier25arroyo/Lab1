@@ -8,6 +8,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PedidoController {
     private ConsoleView viewConsole;
@@ -46,4 +47,16 @@ public class PedidoController {
             viewConsole.errorMessage("Error al actualizar pedido: " + e.getMessage());
         }
     }
+
+        public void obtenerTodosLosPedidos(){
+            try {
+                List<PedidoModel> pedidos=pedidoDAO.obtenerTodosLosPedidos();
+                for (PedidoModel pedido: pedidos){
+                    viewConsole.showMessage(pedido.toString()+"\n");
+                }
+            }catch (SQLException e){
+                viewConsole.errorMessage("Error al recuperar los pedidos"+e.getMessage());
+            }
+        }
+
 }

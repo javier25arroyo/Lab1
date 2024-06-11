@@ -1,8 +1,13 @@
 package model.Proveedor;
 
+import model.Empleado.EmpleadoModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProveedorDAO {
     private Connection connection;
@@ -42,6 +47,28 @@ public class ProveedorDAO {
             stmt.setInt(6, objeto.getProveedor_id());
             stmt.executeUpdate();
         }
+    }
+    public List<ProveedorModel> obtenerTodosLosProveedores()throws SQLException{
+
+        List<ProveedorModel> proveedores= new ArrayList<>();
+
+        String query="SELECT `proveedor_id`, `nombre`, `direccion`, `telefono`, `email`, `fecha_registro` from `proveedores_JA_EM`";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet rs =stmt.executeQuery();
+            while (rs.next()){
+                ProveedorModel proveedor =new ProveedorModel(
+                        rs.getInt("proveedor_id"),
+                        rs.getString("nombre"),
+                        rs.getString("direccion"),
+                        rs.getString("telefono"),
+                        rs.getString("email"),
+                        rs.getDate("fecha_registro")
+                );
+                proveedores.add(proveedor);
+            }
+        }
+        return proveedores;
     }
 }
 

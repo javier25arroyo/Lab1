@@ -63,6 +63,17 @@ public class PedidoModel {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "PedidoModel{" +
+                "pedido_id=" + pedido_id +
+                ", clienteId=" + clienteId +
+                ", fechaPedido=" + fechaPedido +
+                ", total=" + total +
+                ", estado='" + estado + '\'' +
+                '}';
+    }
 }
 
 

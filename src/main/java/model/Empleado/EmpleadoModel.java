@@ -18,6 +18,15 @@ public class EmpleadoModel {
         this.fecha_contratacion = fecha_contratacion;
     }
 
+    public EmpleadoModel(int empleado_id, String nombre, String apellido, String cargo, double salario, Date fecha_contratacion) {
+        this.empleado_id = empleado_id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cargo = cargo;
+        this.salario = salario;
+        this.fecha_contratacion = fecha_contratacion;
+    }
+
     public int getEmpleado_id() {
         return empleado_id;
     }
@@ -64,6 +73,18 @@ public class EmpleadoModel {
 
     public void setFecha_contratacion(Date fecha_contratacion) {
         this.fecha_contratacion = fecha_contratacion;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoModel{" +
+                "empleado_id=" + empleado_id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", salario=" + salario +
+                ", fecha_contratacion=" + fecha_contratacion +
+                '}';
     }
 }
 

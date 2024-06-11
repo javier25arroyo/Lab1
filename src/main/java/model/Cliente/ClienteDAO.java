@@ -1,8 +1,13 @@
 package model.Cliente;
 
+import model.Empleado.EmpleadoModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
     private Connection connection;
@@ -42,6 +47,28 @@ public class ClienteDAO {
             stmt.setInt(1, cliente_id);
             stmt.executeUpdate();
         }
+    }
+    public List<ClienteModel> obtenerTodosLosClientes()throws SQLException{
+
+        List<ClienteModel> clientes= new ArrayList<>();
+
+        String query="SELECT `cliente_id`, `nombre`, `apellido`, `email`, `telefono`,`fecha_registro` from `clientes_JA_EM`";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet rs =stmt.executeQuery();
+            while (rs.next()){
+                ClienteModel cliente =new ClienteModel(
+                        rs.getInt("cliente_id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("email"),
+                        rs.getString("telefono"),
+                        rs.getDate("fecha_registro")
+                );
+                clientes.add(cliente);
+            }
+        }
+        return clientes;
     }
 }
 

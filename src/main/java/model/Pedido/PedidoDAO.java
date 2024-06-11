@@ -1,8 +1,13 @@
 package model.Pedido;
 
+import model.Cliente.ClienteModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PedidoDAO {
     private Connection connection;
@@ -39,6 +44,27 @@ public class PedidoDAO {
             stmt.setInt(5, pedido.getPedido_id());
             stmt.executeUpdate();
         }
+    }
+    public List<PedidoModel> obtenerTodosLosPedidos()throws SQLException{
+
+        List<PedidoModel> pedidos= new ArrayList<>();
+
+        String query="SELECT `pedido_id`, `cliente_id`, `fecha_pedido`, `total`, `estado` from `pedidos_JA_EM`";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet rs =stmt.executeQuery();
+            while (rs.next()){
+                PedidoModel pedido=new PedidoModel(
+                rs.getInt("pedido_id"),
+                rs.getInt("cliente_id"),
+                rs.getDate("fecha_pedido"),
+                rs.getDouble("total"),
+                rs.getString("estado")
+                );
+                pedidos.add(pedido);
+            }
+        }
+        return pedidos;
     }
 }
 

@@ -18,6 +18,15 @@ public class ProveedorModel {
         this.fecha_registro = fecha_registro;
     }
 
+    public ProveedorModel(int proveedor_id, String nombre, String direccion, String telefono, String email, Date fecha_registro) {
+        this.proveedor_id = proveedor_id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.fecha_registro = fecha_registro;
+    }
+
     public int getProveedor_id() {
         return proveedor_id;
     }
@@ -64,6 +73,18 @@ public class ProveedorModel {
 
     public void setFecha_registro(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
+    }
+
+    @Override
+    public String toString() {
+        return "ProveedorModel{" +
+                "proveedor_id=" + proveedor_id +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", fecha_registro=" + fecha_registro +
+                '}';
     }
 }
 

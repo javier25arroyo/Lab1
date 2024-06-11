@@ -1,6 +1,7 @@
 package controller;
 
 import model.Conexion;
+import model.Empleado.EmpleadoModel;
 import model.Producto.ProductoDAO;
 import model.Producto.ProductoModel;
 import view.ConsoleView;
@@ -8,6 +9,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProductoController {
     private ConsoleView viewConsole;
@@ -47,6 +49,16 @@ public class ProductoController {
             viewConsole.showMessage("Actualización de producto correcta\n");
         } catch (SQLException e) {
             viewConsole.errorMessage("Error al actualizar producto: " + e.getMessage());
+        }
+    }
+    public void obtenerTodosLosProdutos(){
+        try {
+            List<ProductoModel> productos=productoDAO.obtenerTodosLosProductos();
+            for (ProductoModel producto: productos){
+                viewConsole.showMessage(producto.toString()+"\n");
+            }
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
         }
     }
 
