@@ -42,8 +42,7 @@ public class ProductoController {
     }
 
     public void actualizarProducto(int producto_id, String nombre, String descripcion, double precio, int stock, Date fecha_creacion) {
-        ProductoModel datos = new ProductoModel(nombre, descripcion, precio, stock, fecha_creacion);
-        datos.setProducto_id(producto_id);
+        ProductoModel datos = new ProductoModel(producto_id, nombre, descripcion, precio, stock, fecha_creacion);
         try {
             productoDAO.actualizarProducto(datos);
             viewConsole.showMessage("Actualización de producto correcta\n");

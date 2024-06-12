@@ -39,7 +39,8 @@ public class PedidoController {
         }
     }
 
-    public void actualizarPedido(PedidoModel pedido) {
+    public void actualizarPedido(int pedido_id, int clienteId, Date fechaPedido, double total, String estado) {
+        PedidoModel pedido =new PedidoModel(pedido_id,clienteId,fechaPedido,total,estado);
         try {
             pedidoDAO.actualizarPedido(pedido);
             viewConsole.showMessage("Actualización de pedido correcta\n");

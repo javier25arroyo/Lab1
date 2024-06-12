@@ -236,11 +236,12 @@ public class Main {
         int id_empleado = 0;
         System.out.println("Digite el id del empleado a actualizar:");
         id_empleado = Integer.parseInt(scanner.nextLine());
-        String nombre = "Juan";
-        String apellido = "Rodriguez";
+        String nombre = "Pedro";
+        String apellido = "Rodriguezzzzzzzzz";
         String cargo = "Jefe";
-        double salario = 22500;
+        double salario = 25000;
         Date fecha_contratacion = Date.valueOf("2024-08-22");
+        empleadoController.actualizarEmpleado(id_empleado,nombre,apellido,cargo,salario,fecha_contratacion);
     }
 
     public static void eliminarEmpleado() {
@@ -271,9 +272,10 @@ pedidoController.obtenerTodosLosPedidos();
         System.out.println("Digite el id del pedido a actualizar:");
         id_pedido = Integer.parseInt(scanner.nextLine());
         int clienteId = 4;
-        Date fechaPedido = Date.valueOf("2024-06-07");
-        double total = 1000;
-        String estado = "En Proceso";
+        Date fechaPedido = Date.valueOf("2024-07-07");
+        double total = 30000;
+        String estado = "Realizado";
+        pedidoController.actualizarPedido(id_pedido,clienteId,fechaPedido,total,estado);
     }
 
     public static void eliminarPedido() {
@@ -304,11 +306,12 @@ pedidoController.obtenerTodosLosPedidos();
         int id_producto = 0;
         System.out.println("Digite el id del producto a actualizar:");
         id_producto = Integer.parseInt(scanner.nextLine());
-        String nombreProducto = "Laptop";
-        String descripcion = "Laptop HP";
-        double precio = 500;
-        int stock = 10;
-        Date fecha_creacion = Date.valueOf("2024-06-07");
+        String nombreProducto = "LaptopP";
+        String descripcion = "Laptop HPP";
+        double precio = 50000;
+        int stock = 200;
+        Date fecha_creacion = Date.valueOf("2028-06-07");
+        productoController.actualizarProducto(id_producto,nombreProducto,descripcion,precio,stock,fecha_creacion);
     }
 
     public static void eliminarProducto() {
@@ -339,11 +342,12 @@ pedidoController.obtenerTodosLosPedidos();
         int id_proveedor = 0;
         System.out.println("Digite el id del proveedor a actualizar:");
         id_proveedor = Integer.parseInt(scanner.nextLine());
-        String nombre = "Javier";
-        String direccion = "Cartago";
-        String telefono = "88888888";
-        String email = "javier@gmail.com";
-        Date fecha_registro = Date.valueOf("2025-12-25");
+        String nombre = "Javierrrr";
+        String direccion = "Limon";
+        String telefono = "12121212";
+        String email = "javier123@gmail.com";
+        Date fecha_registro = Date.valueOf("2027-12-25");
+proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,email,fecha_registro);
     }
 
     public static void eliminarProveedor() {

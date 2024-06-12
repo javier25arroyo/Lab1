@@ -41,7 +41,8 @@ public class EmpleadoController {
         }
     }
 
-    public void actualizarEmpleado(EmpleadoModel empleado) {
+    public void actualizarEmpleado(int empleado_id, String nombre, String apellido, String cargo, double salario, Date fecha_contratacion) {
+       EmpleadoModel empleado=new EmpleadoModel(empleado_id,nombre,apellido,cargo,salario,fecha_contratacion);
         try {
             empleadoDAO.actualizarEmpleado(empleado);
             viewConsole.showMessage("Actualización de empleado correcta\n");

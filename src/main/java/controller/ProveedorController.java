@@ -43,8 +43,7 @@ public class ProveedorController {
     }
 
     public void actualizarProveedor(int proveedor_id, String nombre, String direccion, String telefono, String email, Date fecha_registro) {
-        ProveedorModel datos = new ProveedorModel(nombre, direccion, telefono, email, fecha_registro);
-        datos.setProveedor_id(proveedor_id);
+        ProveedorModel datos = new ProveedorModel(proveedor_id,nombre,direccion,telefono,email,fecha_registro);
         try {
             proveedorDAO.actualizarProveedor(datos);
             viewConsole.showMessage("Actualización de proveedor correcta\n");
