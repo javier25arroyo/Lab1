@@ -26,6 +26,8 @@ public class Main {
         System.out.println("3. Pedido");
         System.out.println("4. Producto");
         System.out.println("5. Proveedor");
+        System.out.println("6. Rol");
+        System.out.println("7. Cliente_Rol");
         System.out.println("0. Salir");
     }
 
@@ -45,6 +47,12 @@ public class Main {
                 break;
             case "5":
                 mostrarSubmenu("Proveedor");
+                break;
+            case "6":
+                mostrarSubmenu("Rol");
+                break;
+            case "7":
+                mostrarSubmenu("Cliente_Rol");
                 break;
             case "0":
                 System.out.println("Saliendo del Programa");
@@ -177,8 +185,51 @@ public class Main {
                         break;
                 }
                 break;
+            case "Rol":
+                switch (opcion) {
+                    case "1":
+                        registroRol();
+                        break;
+                    case "2":
+                        retornarRol();
+                        break;
+                    case "3":
+                        actualizarRol();
+                        break;
+                    case "4":
+                        eliminarRol();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Cliente_Rol":
+                switch (opcion) {
+                    case "1":
+                        registroClienteRol();
+                        break;
+                    case "2":
+                        retornarClienteRol();
+                        break;
+                    case "3":
+                        actualizarClienteRol();
+                        break;
+                    case "4":
+                        eliminarClienteRol();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                    }
+                break;
         }
     }
+
 
     public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
@@ -356,5 +407,47 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
         System.out.println("Digite el id del proveedor a eliminar:");
         id_proveedor = Integer.parseInt(scanner.nextLine());
         proveedorController.eliminarProveedor(id_proveedor);
+    }
+
+    public static void registroRol() {
+        RolController rolController = new RolController(consoleView);
+        String nombre = "Administrador";
+        String descripcion = "Administrador de la empresa";
+        rolController.agregarRol(nombre, descripcion);
+    }
+
+    public static void retornarRol() {
+        RolController rolController = new RolController(consoleView);
+        rolController.obtenerTodosLosRoles();
+    }
+
+    public static void actualizarRol() {
+        RolController rolController = new RolController(consoleView);
+        int id_rol = 0;
+        System.out.println("Digite el id del rol a actualizar:");
+        id_rol = Integer.parseInt(scanner.nextLine());
+        String nombre = "Nada";
+        String descripcion = "Administrador de la empresa";
+        rolController.actualizarRol(id_rol, nombre, descripcion);
+    }
+
+    public static void eliminarRol() {
+        RolController rolController = new RolController(consoleView);
+        int id_rol = 0;
+        System.out.println("Digite el id del rol a eliminar:");
+        id_rol = Integer.parseInt(scanner.nextLine());
+        rolController.eliminarRol(id_rol);
+    }
+
+    public static void registroClienteRol() {
+    }
+
+    public static void retornarClienteRol() {
+    }
+
+    public static void actualizarClienteRol() {
+    }
+
+    public static void eliminarClienteRol() {
     }
 }

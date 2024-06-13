@@ -1,7 +1,6 @@
 package controller;
 
 import model.Conexion;
-import model.Empleado.EmpleadoModel;
 import model.Proveedor.ProveedorDAO;
 import model.Proveedor.ProveedorModel;
 import view.ConsoleView;
