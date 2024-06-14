@@ -427,7 +427,7 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
         System.out.println("Digite el id del rol a actualizar:");
         id_rol = Integer.parseInt(scanner.nextLine());
         String nombre = "Nada";
-        String descripcion = "Administrador de la empresa";
+        String descripcion = "Nada de la empresa";
         rolController.actualizarRol(id_rol, nombre, descripcion);
     }
 
@@ -440,6 +440,10 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
     }
 
     public static void registroClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int cliente_id = 4;
+        int rol_id = 1;
+        clienteRolController.agregarClienteRol(cliente_id, rol_id);
     }
 
     public static void retornarClienteRol() {
