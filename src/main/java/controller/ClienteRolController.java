@@ -50,9 +50,9 @@ public class ClienteRolController {
         }
     }
 
-    public void obtenerTodosLosClienteRoles(){
+    public void obtenerClienteRol(){
         try {
-            List<ClienteRolModel> clienteRoles=clienteRolDAO.obtenerTodosLosClienteRoles();
+            List<ClienteRolModel> clienteRoles=clienteRolDAO.obtenerClienteRol();
             for (ClienteRolModel clienteRol: clienteRoles){
                 viewConsole.showMessage(clienteRol.toString()+"\n");
             }

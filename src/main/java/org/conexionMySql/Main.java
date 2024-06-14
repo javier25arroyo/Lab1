@@ -423,7 +423,7 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
 
     public static void actualizarRol() {
         RolController rolController = new RolController(consoleView);
-        int id_rol = 0;
+        int id_rol = 1;
         System.out.println("Digite el id del rol a actualizar:");
         id_rol = Integer.parseInt(scanner.nextLine());
         String nombre = "Nada";
@@ -447,11 +447,25 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
     }
 
     public static void retornarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        clienteRolController.obtenerClienteRol();
     }
 
     public static void actualizarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int id = 1;
+        System.out.println("Digite el id del cliente_rol a actualizar:");
+        id = Integer.parseInt(scanner.nextLine());
+        int FK_idCliente = 4;
+        int FK_idRol = 1;
+        clienteRolController.actualizarClienteRol(id, FK_idCliente, FK_idRol);
     }
 
     public static void eliminarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int id = 0;
+        System.out.println("Digite el id del cliente_rol a eliminar:");
+        id = Integer.parseInt(scanner.nextLine());
+        clienteRolController.eliminarClienteRol(id);
     }
 }

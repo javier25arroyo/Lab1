@@ -40,7 +40,7 @@ public class ClienteRolDAO {
         }
     }
 
-    public List<ClienteRolModel> obtenerTodosLosClienteRoles()throws SQLException{
+    public List<ClienteRolModel> obtenerClienteRol()throws SQLException{
         List<ClienteRolModel> clienteRoles= new ArrayList<>();
         String query="SELECT `id`, `FK_idCliente`, `FK_idRol` from `Cliente_Rol_JA_EM`";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {

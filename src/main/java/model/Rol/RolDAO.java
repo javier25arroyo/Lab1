@@ -15,7 +15,7 @@ public class RolDAO {
     }
 
     public void agregarRol(RolModel objeto) throws SQLException {
-        String query = "INSERT INTO `roles_JA_EM`(`nombre`, `descripcion`) VALUES (?, ?)";
+        String query = "INSERT INTO `rol_JA_EM`(`nombre`, `descripcion`) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, objeto.getNombre());
             stmt.setString(2, objeto.getDescripcion());
@@ -24,7 +24,7 @@ public class RolDAO {
     }
 
     public void eliminarRol(int rol_id) throws SQLException {
-        String query = "DELETE FROM `roles_JA_EM` WHERE `rol_id` = ?";
+        String query = "DELETE FROM `rol_JA_EM` WHERE `rol_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, rol_id);
             stmt.executeUpdate();
@@ -32,7 +32,7 @@ public class RolDAO {
     }
 
     public void actualizarRol(RolModel objeto) throws SQLException {
-        String query = "UPDATE `roles_JA_EM` SET `nombre` = ?, `descripcion` = ? WHERE `rol_id` = ?";
+        String query = "UPDATE `rol_JA_EM` SET `nombre` = ?, `descripcion` = ? WHERE `rol_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, objeto.getNombre());
             stmt.setString(2, objeto.getDescripcion());
@@ -43,7 +43,7 @@ public class RolDAO {
 
     public List<RolModel> obtenerTodosLosRoles()throws SQLException{
         List<RolModel> roles= new ArrayList<>();
-        String query="SELECT `id`, `nombre`, `descripcion` from `roles_JA_EM`";
+        String query="SELECT `id`, `nombre`, `descripcion` from `rol_JA_EM`";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
