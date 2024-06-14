@@ -26,6 +26,8 @@ public class Main {
         System.out.println("3. Pedido");
         System.out.println("4. Producto");
         System.out.println("5. Proveedor");
+        System.out.println("6. Rol");
+        System.out.println("7. Cliente_Rol");
         System.out.println("0. Salir");
     }
 
@@ -45,6 +47,12 @@ public class Main {
                 break;
             case "5":
                 mostrarSubmenu("Proveedor");
+                break;
+            case "6":
+                mostrarSubmenu("Rol");
+                break;
+            case "7":
+                mostrarSubmenu("Cliente_Rol");
                 break;
             case "0":
                 System.out.println("Saliendo del Programa");
@@ -177,8 +185,51 @@ public class Main {
                         break;
                 }
                 break;
+            case "Rol":
+                switch (opcion) {
+                    case "1":
+                        registroRol();
+                        break;
+                    case "2":
+                        retornarRol();
+                        break;
+                    case "3":
+                        actualizarRol();
+                        break;
+                    case "4":
+                        eliminarRol();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
+            case "Cliente_Rol":
+                switch (opcion) {
+                    case "1":
+                        registroClienteRol();
+                        break;
+                    case "2":
+                        retornarClienteRol();
+                        break;
+                    case "3":
+                        actualizarClienteRol();
+                        break;
+                    case "4":
+                        eliminarClienteRol();
+                        break;
+                    case "v":
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+                break;
         }
     }
+
 
     public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
@@ -199,13 +250,13 @@ public class Main {
         ClienteController clienteController = new ClienteController(consoleView);
         int id_cliente = 0;
         System.out.println("Digite el id del cliente a actualizar:");
-        id_cliente=Integer.parseInt(scanner.nextLine());
+        id_cliente = Integer.parseInt(scanner.nextLine());
         String nombre = "Alberto";
-        String apellido="Calvooooooo";
-        String email= "celestecalvo@gmail.com";
-        String telefono="22222222";
-        Date fecha_registro=Date.valueOf("2024-12-25");
-        clienteController.actualizarCliente(id_cliente,nombre,apellido,email,telefono,fecha_registro);
+        String apellido = "Calvooooooo";
+        String email = "celestecalvo@gmail.com";
+        String telefono = "22222222";
+        Date fecha_registro = Date.valueOf("2024-12-25");
+        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, telefono, fecha_registro);
     }
 
     public static void eliminarCliente() {
@@ -241,7 +292,7 @@ public class Main {
         String cargo = "Jefe";
         double salario = 25000;
         Date fecha_contratacion = Date.valueOf("2024-08-22");
-        empleadoController.actualizarEmpleado(id_empleado,nombre,apellido,cargo,salario,fecha_contratacion);
+        empleadoController.actualizarEmpleado(id_empleado, nombre, apellido, cargo, salario, fecha_contratacion);
     }
 
     public static void eliminarEmpleado() {
@@ -262,8 +313,8 @@ public class Main {
     }
 
     public static void retornarPedido() {
-PedidoController pedidoController=new PedidoController(consoleView);
-pedidoController.obtenerTodosLosPedidos();
+        PedidoController pedidoController = new PedidoController(consoleView);
+        pedidoController.obtenerTodosLosPedidos();
     }
 
     public static void actualizarPedido() {
@@ -275,7 +326,7 @@ pedidoController.obtenerTodosLosPedidos();
         Date fechaPedido = Date.valueOf("2024-07-07");
         double total = 30000;
         String estado = "Realizado";
-        pedidoController.actualizarPedido(id_pedido,clienteId,fechaPedido,total,estado);
+        pedidoController.actualizarPedido(id_pedido, clienteId, fechaPedido, total, estado);
     }
 
     public static void eliminarPedido() {
@@ -311,7 +362,7 @@ pedidoController.obtenerTodosLosPedidos();
         double precio = 50000;
         int stock = 200;
         Date fecha_creacion = Date.valueOf("2028-06-07");
-        productoController.actualizarProducto(id_producto,nombreProducto,descripcion,precio,stock,fecha_creacion);
+        productoController.actualizarProducto(id_producto, nombreProducto, descripcion, precio, stock, fecha_creacion);
     }
 
     public static void eliminarProducto() {
@@ -347,7 +398,7 @@ pedidoController.obtenerTodosLosPedidos();
         String telefono = "12121212";
         String email = "javier123@gmail.com";
         Date fecha_registro = Date.valueOf("2027-12-25");
-proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,email,fecha_registro);
+        proveedorController.actualizarProveedor(id_proveedor, nombre, direccion, telefono, email, fecha_registro);
     }
 
     public static void eliminarProveedor() {
@@ -356,5 +407,65 @@ proveedorController.actualizarProveedor(id_proveedor,nombre,direccion,telefono,e
         System.out.println("Digite el id del proveedor a eliminar:");
         id_proveedor = Integer.parseInt(scanner.nextLine());
         proveedorController.eliminarProveedor(id_proveedor);
+    }
+
+    public static void registroRol() {
+        RolController rolController = new RolController(consoleView);
+        String nombre = "Administrador";
+        String descripcion = "Administrador de la empresa";
+        rolController.agregarRol(nombre, descripcion);
+    }
+
+    public static void retornarRol() {
+        RolController rolController = new RolController(consoleView);
+        rolController.obtenerTodosLosRoles();
+    }
+
+    public static void actualizarRol() {
+        RolController rolController = new RolController(consoleView);
+        int id_rol = 0;
+        System.out.println("Digite el id del rol a actualizar:");
+        id_rol = Integer.parseInt(scanner.nextLine());
+        String nombre = "Nada";
+        String descripcion = "Administrador de la empresa";
+        rolController.actualizarRol(id_rol, nombre, descripcion);
+    }
+
+    public static void eliminarRol() {
+        RolController rolController = new RolController(consoleView);
+        int id_rol = 0;
+        System.out.println("Digite el id del rol a eliminar:");
+        id_rol = Integer.parseInt(scanner.nextLine());
+        rolController.eliminarRol(id_rol);
+    }
+
+    public static void registroClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int cliente_id = 1;
+        int rol_id = 1;
+        clienteRolController.agregarClienteRol(cliente_id, rol_id);
+    }
+
+    public static void retornarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        clienteRolController.obtenerClienteRol();
+    }
+
+    public static void actualizarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int id = 4;
+        System.out.println("Digite el id del cliente_rol a actualizar:");
+        id = Integer.parseInt(scanner.nextLine());
+        int FK_idCliente = 99;
+        int FK_idRol = 69;
+        clienteRolController.actualizarClienteRol(id, FK_idCliente, FK_idRol);
+    }
+
+    public static void eliminarClienteRol() {
+        ClienteRolController clienteRolController = new ClienteRolController(consoleView);
+        int id = 0;
+        System.out.println("Digite el id del cliente_rol a eliminar:");
+        id = Integer.parseInt(scanner.nextLine());
+        clienteRolController.eliminarClienteRol(id);
     }
 }

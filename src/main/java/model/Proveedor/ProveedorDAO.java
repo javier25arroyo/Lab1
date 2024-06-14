@@ -1,7 +1,5 @@
 package model.Proveedor;
 
-import model.Empleado.EmpleadoModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
