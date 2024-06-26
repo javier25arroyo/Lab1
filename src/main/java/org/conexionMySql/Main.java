@@ -2,6 +2,8 @@ package org.conexionMySql;
 
 import controller.*;
 import view.ConsoleView;
+
+
 import java.util.Scanner;
 import java.sql.Date;
 
@@ -233,11 +235,24 @@ public class Main {
 
     public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
-        String nombre = "Alberto";
-        String apellido = "Calvo";
-        String email = "celestecalvo@gmail.com";
-        String telefono = "77777777";
-        Date fecha_registro = Date.valueOf("2024-06-07");
+        String nombre;
+        String apellido;
+        String email;
+        String telefono;
+        Date fecha_registro = null;
+
+        System.out.println("Digite el nombre del cliente:");
+       nombre = scanner.nextLine();
+        System.out.println("Digite el apellido del cliente:");
+        apellido = scanner.nextLine();
+        System.out.println("Digite el email del cliente:");
+        email = scanner.nextLine();
+        System.out.println("Digite el teléfono del cliente:");
+        telefono = scanner.nextLine();
+        System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
+        fecha_registro= Date.valueOf(scanner.nextLine());
+
+
         clienteController.agregarClientes(nombre, apellido, email, telefono, fecha_registro);
     }
 
@@ -251,11 +266,22 @@ public class Main {
         int id_cliente = 0;
         System.out.println("Digite el id del cliente a actualizar:");
         id_cliente = Integer.parseInt(scanner.nextLine());
-        String nombre = "Alberto";
-        String apellido = "Calvooooooo";
-        String email = "celestecalvo@gmail.com";
-        String telefono = "22222222";
-        Date fecha_registro = Date.valueOf("2024-12-25");
+        String nombre;
+        String apellido;
+        String email;
+        String telefono;
+        Date fecha_registro = null;
+
+        System.out.println("Digite el nombre del cliente:");
+        nombre = scanner.nextLine();
+        System.out.println("Digite el apellido del cliente:");
+        apellido = scanner.nextLine();
+        System.out.println("Digite el email del cliente:");
+        email = scanner.nextLine();
+        System.out.println("Digite el teléfono del cliente:");
+        telefono = scanner.nextLine();
+        System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
+        fecha_registro= Date.valueOf(scanner.nextLine());
         clienteController.actualizarCliente(id_cliente, nombre, apellido, email, telefono, fecha_registro);
     }
 
@@ -269,11 +295,22 @@ public class Main {
 
     public static void registroEmpleado() {
         EmpleadoController empleadoController = new EmpleadoController(consoleView);
-        String nombre = "Juan";
-        String apellido = "Rodriguez";
-        String cargo = "Jefe";
-        double salario = 22500;
-        Date fecha_contratacion = Date.valueOf("2024-08-22");
+        String nombre;
+        String apellido;
+        String cargo;
+        double salario;
+        Date fecha_contratacion = null;
+
+        System.out.println("Digite el nombre del empleado:");
+        nombre = scanner.nextLine();
+        System.out.println("Digite el apellido del empleado:");
+        apellido = scanner.nextLine();
+        System.out.println("Digite el cargo del empleado:");
+        cargo = scanner.nextLine();
+        System.out.println("Digite el salario del empleado:");
+        salario = Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite la fecha de contratacion del empleado(Formato: yyyy-MM-dd):");
+        fecha_contratacion=Date.valueOf(scanner.nextLine());
         empleadoController.agregarEmpleado(nombre, apellido, cargo, salario, fecha_contratacion);
     }
 
@@ -287,11 +324,22 @@ public class Main {
         int id_empleado = 0;
         System.out.println("Digite el id del empleado a actualizar:");
         id_empleado = Integer.parseInt(scanner.nextLine());
-        String nombre = "Pedro";
-        String apellido = "Rodriguezzzzzzzzz";
-        String cargo = "Jefe";
-        double salario = 25000;
-        Date fecha_contratacion = Date.valueOf("2024-08-22");
+        String nombre;
+        String apellido;
+        String cargo;
+        double salario;
+        Date fecha_contratacion = null;
+
+        System.out.println("Digite el nombre del empleado:");
+        nombre = scanner.nextLine();
+        System.out.println("Digite el apellido del empleado:");
+        apellido = scanner.nextLine();
+        System.out.println("Digite el cargo del empleado:");
+        cargo = scanner.nextLine();
+        System.out.println("Digite el salario del empleado:");
+        salario = Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite la fecha de contratacion del empleado(Formato: yyyy-MM-dd):");
+        fecha_contratacion=Date.valueOf(scanner.nextLine());
         empleadoController.actualizarEmpleado(id_empleado, nombre, apellido, cargo, salario, fecha_contratacion);
     }
 
@@ -305,10 +353,21 @@ public class Main {
 
     public static void registroPedido() {
         PedidoController pedidoController = new PedidoController(consoleView);
-        int clienteId = 4;
-        Date fechaPedido = Date.valueOf("2024-06-07");
-        double total = 1000;
-        String estado = "En Proceso";
+        int clienteId;
+        Date fechaPedido = null;
+        double total;
+        String estado;
+
+
+        System.out.println("Digite el ID del cliente:");
+        clienteId = Integer.parseInt(scanner.nextLine());
+        System.out.println("Digite la fecha del pedido (Formato: yyyy-MM-dd):");
+        fechaPedido=Date.valueOf(scanner.nextLine());
+        System.out.println("Digite el total del pedido:");
+        total = Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite el estado del pedido:");
+        estado = scanner.nextLine();
+
         pedidoController.agregarPedido(clienteId, fechaPedido, total, estado);
     }
 
@@ -322,10 +381,20 @@ public class Main {
         int id_pedido = 0;
         System.out.println("Digite el id del pedido a actualizar:");
         id_pedido = Integer.parseInt(scanner.nextLine());
-        int clienteId = 4;
-        Date fechaPedido = Date.valueOf("2024-07-07");
-        double total = 30000;
-        String estado = "Realizado";
+        int clienteId;
+        Date fechaPedido = null;
+        double total;
+        String estado;
+
+
+        System.out.println("Digite el ID del cliente:");
+        clienteId = Integer.parseInt(scanner.nextLine());
+        System.out.println("Digite la fecha del pedido (Formato: yyyy-MM-dd):");
+        fechaPedido=Date.valueOf(scanner.nextLine());
+        System.out.println("Digite el total del pedido:");
+        total = Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite el estado del pedido:");
+        estado = scanner.nextLine();
         pedidoController.actualizarPedido(id_pedido, clienteId, fechaPedido, total, estado);
     }
 
@@ -339,11 +408,22 @@ public class Main {
 
     public static void registroProducto() {
         ProductoController productoController = new ProductoController(consoleView);
-        String nombreProducto = "Laptop";
-        String descripcion = "Laptop HP";
-        double precio = 500;
-        int stock = 10;
-        Date fecha_creacion = Date.valueOf("2024-06-07");
+        String nombreProducto;
+        String descripcion;
+        double precio;
+        int stock;
+        Date fecha_creacion=null;
+        System.out.println("Digite el nombre del producto a registrar:");
+        nombreProducto=scanner.nextLine();
+        System.out.println("Digite la descripcion del producto a registrar:");
+        descripcion=scanner.nextLine();
+        System.out.println("Digite el precio del producto:");
+        precio=Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite el stock del producto:");
+        stock=Integer.parseInt(scanner.nextLine());
+        System.out.println("Digite la fecha de creacion del producto (Formato: yyyy-MM-dd):");
+        fecha_creacion= Date.valueOf(scanner.nextLine());
+
         productoController.agregarProducto(nombreProducto, descripcion, precio, stock, fecha_creacion);
     }
 
@@ -355,13 +435,24 @@ public class Main {
     public static void actualizarProducto() {
         ProductoController productoController = new ProductoController(consoleView);
         int id_producto = 0;
+        String nombreProducto;
+        String descripcion;
+        double precio;
+        int stock;
+        Date fecha_creacion=null;
         System.out.println("Digite el id del producto a actualizar:");
         id_producto = Integer.parseInt(scanner.nextLine());
-        String nombreProducto = "LaptopP";
-        String descripcion = "Laptop HPP";
-        double precio = 50000;
-        int stock = 200;
-        Date fecha_creacion = Date.valueOf("2028-06-07");
+        System.out.println("Digite el nombre del producto a registrar:");
+        nombreProducto=scanner.nextLine();
+        System.out.println("Digite la descripcion del producto a registrar:");
+        descripcion=scanner.nextLine();
+        System.out.println("Digite el precio del producto:");
+        precio=Double.parseDouble(scanner.nextLine());
+        System.out.println("Digite el stock del producto:");
+        stock=Integer.parseInt(scanner.nextLine());
+        System.out.println("Digite la fecha de creacion del producto (Formato: yyyy-MM-dd):");
+        fecha_creacion= Date.valueOf(scanner.nextLine());
+
         productoController.actualizarProducto(id_producto, nombreProducto, descripcion, precio, stock, fecha_creacion);
     }
 
