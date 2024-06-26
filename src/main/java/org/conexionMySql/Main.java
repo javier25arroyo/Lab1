@@ -13,10 +13,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         String opcion = "";
-        while (!opcion.equals("s")) {
+        while (!opcion.equals("0")) {
             mostrarMenuPrincipal();
             System.out.println("Ingrese la opción deseada: ");
             opcion = scanner.nextLine();
+            if (opcion.equals("0")) {
+                System.out.println("Saliendo del Programa");
+                break;
+            }
             ejecutarOpcionMenuPrincipal(opcion);
         }
     }
@@ -466,11 +470,16 @@ public class Main {
 
     public static void registroProveedor() {
         ProveedorController proveedorController = new ProveedorController(consoleView);
-        String nombre = "Javier";
-        String direccion = "Cartago";
-        String telefono = "88888888";
-        String email = "javier@gmail.com";
-        Date fecha_registro = Date.valueOf("2025-12-25");
+        System.out.println("Ingrese el nombre del proveedor:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese la dirección del proveedor:");
+        String direccion = scanner.nextLine();
+        System.out.println("Ingrese el teléfono del proveedor:");
+        String telefono = scanner.nextLine();
+        System.out.println("Ingrese el email del proveedor:");
+        String email = scanner.nextLine();
+        System.out.println("Ingrese la fecha de registro del proveedor (yyyy-mm-dd):");
+        Date fecha_registro = Date.valueOf(scanner.nextLine());
         proveedorController.agregarProveedor(nombre, direccion, telefono, email, fecha_registro);
     }
 
@@ -481,14 +490,18 @@ public class Main {
 
     public static void actualizarProveedor() {
         ProveedorController proveedorController = new ProveedorController(consoleView);
-        int id_proveedor = 0;
         System.out.println("Digite el id del proveedor a actualizar:");
-        id_proveedor = Integer.parseInt(scanner.nextLine());
-        String nombre = "Javierrrr";
-        String direccion = "Limon";
-        String telefono = "12121212";
-        String email = "javier123@gmail.com";
-        Date fecha_registro = Date.valueOf("2027-12-25");
+        int id_proveedor = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el nombre del proveedor:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese la dirección del proveedor:");
+        String direccion = scanner.nextLine();
+        System.out.println("Ingrese el teléfono del proveedor:");
+        String telefono = scanner.nextLine();
+        System.out.println("Ingrese el email del proveedor:");
+        String email = scanner.nextLine();
+        System.out.println("Ingrese la fecha de registro del proveedor (yyyy-mm-dd):");
+        Date fecha_registro = Date.valueOf(scanner.nextLine());
         proveedorController.actualizarProveedor(id_proveedor, nombre, direccion, telefono, email, fecha_registro);
     }
 
@@ -502,8 +515,10 @@ public class Main {
 
     public static void registroRol() {
         RolController rolController = new RolController(consoleView);
-        String nombre = "Administrador";
-        String descripcion = "Administrador de la empresa";
+        System.out.println("Ingrese el nombre del rol:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese la descripción del rol:");
+        String descripcion = scanner.nextLine();
         rolController.agregarRol(nombre, descripcion);
     }
 
@@ -514,11 +529,12 @@ public class Main {
 
     public static void actualizarRol() {
         RolController rolController = new RolController(consoleView);
-        int id_rol = 0;
         System.out.println("Digite el id del rol a actualizar:");
-        id_rol = Integer.parseInt(scanner.nextLine());
-        String nombre = "Nada";
-        String descripcion = "Administrador de la empresa";
+        int id_rol = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el nombre del rol:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese la descripción del rol:");
+        String descripcion = scanner.nextLine();
         rolController.actualizarRol(id_rol, nombre, descripcion);
     }
 
@@ -532,8 +548,10 @@ public class Main {
 
     public static void registroClienteRol() {
         ClienteRolController clienteRolController = new ClienteRolController(consoleView);
-        int cliente_id = 1;
-        int rol_id = 1;
+        System.out.println("Ingrese el id del cliente:");
+        int cliente_id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el id del rol:");
+        int rol_id = Integer.parseInt(scanner.nextLine());
         clienteRolController.agregarClienteRol(cliente_id, rol_id);
     }
 
@@ -544,11 +562,12 @@ public class Main {
 
     public static void actualizarClienteRol() {
         ClienteRolController clienteRolController = new ClienteRolController(consoleView);
-        int id = 4;
         System.out.println("Digite el id del cliente_rol a actualizar:");
-        id = Integer.parseInt(scanner.nextLine());
-        int FK_idCliente = 99;
-        int FK_idRol = 69;
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el id del cliente:");
+        int FK_idCliente = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el id del rol:");
+        int FK_idRol = Integer.parseInt(scanner.nextLine());
         clienteRolController.actualizarClienteRol(id, FK_idCliente, FK_idRol);
     }
 
