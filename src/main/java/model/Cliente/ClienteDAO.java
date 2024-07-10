@@ -70,6 +70,26 @@ public class ClienteDAO {
         }
         return clientes;
     }
+
+    public ClienteModel getClienteByEmail(String email) throws SQLException {
+        ClienteModel cliente = null;
+        String query = "SELECT * FROM `clientes_JA_EM` WHERE `email` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                cliente = new ClienteModel(
+                        rs.getInt("cliente_id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("email"),
+                        rs.getString("telefono"),
+                        rs.getDate("fecha_registro")
+                );
+            }
+        }
+        return cliente;
+    }
 }
 
 /*
