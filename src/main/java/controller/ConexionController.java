@@ -8,8 +8,6 @@ import java.sql.SQLException;
 
 public class ConexionController {
 
-    //vista en el cual muestre los datos
-
     private ConsoleView viewConsole;
 
     public ConexionController(ConsoleView viewConsole){
