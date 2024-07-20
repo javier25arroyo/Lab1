@@ -11,7 +11,7 @@ public class ClienteModel {
         private String telefono;
         private java.sql.Date fechaRegistro;
 
-        public ClienteModel(String nombre, String apellido, String email, String telefono, java.sql.Date fechaRegistro,String contrasena) {
+        public ClienteModel(String nombre, String apellido, String email, String telefono, java.sql.Date fechaRegistro, String contrasena) {
             this.nombre = nombre;
             this.apellido = apellido;
             this.email = email;
@@ -21,7 +21,7 @@ public class ClienteModel {
 
         }
 
-    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String telefono, Date fechaRegistro,String contrasena) {
+    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String telefono, Date fechaRegistro, String contrasena) {
         this.cliente_id = cliente_id;
         this.nombre = nombre;
         this.apellido = apellido;

@@ -25,6 +25,9 @@ public class ClienteForm {
     private JTextField IDField1;
     private JTextField textContrasena;
     private JTextField textID;
+    private JButton irAPedidoButton;
+    private JButton button2;
+    private JButton button3;
 
     private ClienteController clienteController;
     private DefaultTableModel tableModel;

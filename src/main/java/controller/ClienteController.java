@@ -3,7 +3,6 @@ package controller;
 import model.Cliente.ClienteDAO;
 import model.Cliente.ClienteModel;
 import model.Conexion;
-import model.Empleado.EmpleadoModel;
 import view.ConsoleView;
 
 import java.sql.Connection;

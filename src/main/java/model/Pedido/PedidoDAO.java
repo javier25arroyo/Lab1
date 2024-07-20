@@ -16,7 +16,7 @@ public class PedidoDAO {
         this.connection = connection;
     }
 
-    public void agregarPedido(PedidoModel objeto) throws SQLException {
+    public void agregarPedido(model.Pedido.PedidoModel objeto) throws SQLException {
         String query = "INSERT INTO pedidos_JA_EM(`cliente_id`, `fecha_pedido`, `total`, `estado`) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, objeto.getClienteId());
@@ -34,7 +34,7 @@ public class PedidoDAO {
         }
     }
 
-    public void actualizarPedido(PedidoModel pedido) throws SQLException {
+    public void actualizarPedido(model.Pedido.PedidoModel pedido) throws SQLException {
         String query = "UPDATE `pedidos_JA_EM` SET `cliente_id` = ?, `fecha_pedido` = ?, `total` = ?, `estado` = ? WHERE `pedido_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, pedido.getClienteId());
@@ -45,16 +45,16 @@ public class PedidoDAO {
             stmt.executeUpdate();
         }
     }
-    public List<PedidoModel> obtenerTodosLosPedidos()throws SQLException{
+    public List<model.Pedido.PedidoModel> obtenerTodosLosPedidos()throws SQLException{
 
-        List<PedidoModel> pedidos= new ArrayList<>();
+        List<model.Pedido.PedidoModel> pedidos= new ArrayList<>();
 
         String query="SELECT `pedido_id`, `cliente_id`, `fecha_pedido`, `total`, `estado` from `pedidos_JA_EM`";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet rs =stmt.executeQuery();
             while (rs.next()){
-                PedidoModel pedido=new PedidoModel(
+                model.Pedido.PedidoModel pedido=new model.Pedido.PedidoModel(
                 rs.getInt("pedido_id"),
                 rs.getInt("cliente_id"),
                 rs.getDate("fecha_pedido"),
@@ -65,6 +65,25 @@ public class PedidoDAO {
             }
         }
         return pedidos;
+    }
+    public PedidoModel getPedidoByID(int id) throws SQLException {
+        PedidoModel pedido = null;
+        String query = "SELECT * FROM `pedidos_JA_EM` WHERE `pedido_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                pedido = new PedidoModel(
+                        rs.getInt("pedido_id"),
+                        rs.getInt("cliente_id"),
+                        rs.getDate("fecha_pedido"),
+                        rs.getDouble("total"),
+                        rs.getString("estado")
+
+                );
+            }
+        }
+        return pedido;
     }
 }
 
