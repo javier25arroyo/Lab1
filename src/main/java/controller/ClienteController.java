@@ -9,6 +9,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteController {
@@ -23,7 +24,7 @@ public class ClienteController {
     }
 
     public void agregarClientes(String nombre, String apellido, String email, String telefono, Date fecha_registro, String contrasena){
-        ClienteModel datos = new ClienteModel(nombre, apellido,email,contrasena,telefono,fecha_registro);
+        ClienteModel datos = new ClienteModel(nombre, apellido,email,telefono,fecha_registro,contrasena);
 
         try{
             clienteDAO.agregarClientes(datos);
@@ -33,8 +34,8 @@ public class ClienteController {
         }
     }
 
-    public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String contrasena, String telefono, Date fecha_registro) {
-        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido,email,contrasena,telefono,fecha_registro);
+    public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String telefono, Date fecha_registro, String contrasena) {
+        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido,email,telefono,fecha_registro,contrasena);
         try {
             clienteDAO.actualizarCliente(cliente);
             viewConsole.showMessage("Actualización de cliente correcta\n");
@@ -51,14 +52,20 @@ public class ClienteController {
             viewConsole.errorMessage("Error al eliminar cliente: " + e.getMessage());
         }
     }
-    public void obtenerTodosLosClientes(){
+    public List<ClienteModel> obtenerTodosLosClientes(){
         try {
-            List<ClienteModel> clientes=clienteDAO.obtenerTodosLosClientes();
-            for (ClienteModel cliente: clientes){
-                viewConsole.showMessage(cliente.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
+            return clienteDAO.obtenerTodosLosClientes();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los clientes: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+    public ClienteModel getClienteByID(int id) {
+        try {
+            return clienteDAO.getClienteByID(id);
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar el cliente: " + e.getMessage());
+            return null;
         }
     }
 }

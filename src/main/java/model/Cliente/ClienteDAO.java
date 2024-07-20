@@ -54,7 +54,7 @@ public class ClienteDAO {
 
         List<ClienteModel> clientes= new ArrayList<>();
 
-        String query="SELECT `cliente_id`, `nombre`, `apellido`, `email`, `contrasena`,`telefono`,`fecha_registro` from `clientes_JA_EM`";
+        String query="SELECT `cliente_id`, `nombre`, `apellido`, `email`, `contrasena`,`telefono`,`fecha_registro`, `contrasena` from `clientes_JA_EM`";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet rs =stmt.executeQuery();
@@ -64,9 +64,10 @@ public class ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("email"),
-                        rs.getString("contrasena"),
                         rs.getString("telefono"),
-                        rs.getDate("fecha_registro")
+                        rs.getDate("fecha_registro"),
+                        rs.getString("contrasena")
+
                 );
                 clientes.add(cliente);
             }
@@ -88,12 +89,36 @@ public class ClienteDAO {
                         rs.getString("email"),
                         rs.getString("contrasena"),
                         rs.getString("telefono"),
-                        rs.getDate("fecha_registro")
+                        rs.getDate("fecha_registro"),
+                        rs.getString("contrasena")
+
                 );
             }
         }
         return null;
     }
+    public ClienteModel getClienteByID(int id) throws SQLException {
+        ClienteModel cliente = null;
+        String query = "SELECT * FROM `clientes_JA_EM` WHERE `cliente_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                cliente = new ClienteModel(
+                        rs.getInt("cliente_id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("email"),
+                        rs.getString("telefono"),
+                        rs.getDate("fecha_registro"),
+                        rs.getString("contrasena")
+
+                );
+            }
+        }
+        return cliente;
+    }
+
 }
 
 /*

@@ -287,7 +287,7 @@ public class Main {
         System.out.println("Digite la contraseña del cliente:");
         contrasena = scanner.nextLine();
 
-        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, contrasena, telefono,fecha_registro);
+        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, telefono,fecha_registro,contrasena);
     }
 
     public static void eliminarCliente() {
