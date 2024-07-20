@@ -7,22 +7,25 @@ public class ClienteModel {
         private String nombre;
         private String apellido;
         private String email;
+        private String contrasena;
         private String telefono;
         private java.sql.Date fechaRegistro;
 
-        public ClienteModel(String nombre, String apellido, String email, String telefono, java.sql.Date fechaRegistro) {
+        public ClienteModel(String nombre, String apellido, String email, String contrasena, String telefono, java.sql.Date fechaRegistro) {
             this.nombre = nombre;
             this.apellido = apellido;
             this.email = email;
+            this.contrasena = contrasena;
             this.telefono = telefono;
             this.fechaRegistro = fechaRegistro;
         }
 
-    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String telefono, Date fechaRegistro) {
+    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String contrasena, String telefono, Date fechaRegistro) {
         this.cliente_id = cliente_id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.contrasena = contrasena;
         this.telefono = telefono;
         this.fechaRegistro = fechaRegistro;
     }
@@ -59,6 +62,14 @@ public class ClienteModel {
         this.email = email;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -82,6 +93,7 @@ public class ClienteModel {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
+                ", contrasena='" + contrasena + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", fechaRegistro=" + fechaRegistro +
                 '}';

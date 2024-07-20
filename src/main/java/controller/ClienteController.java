@@ -22,8 +22,8 @@ public class ClienteController {
         this.clienteDAO = new ClienteDAO(connection);
     }
 
-    public void agregarClientes(String nombre, String apellido, String email, String telefono, Date fecha_registro){
-        ClienteModel datos = new ClienteModel(nombre, apellido,email,telefono,fecha_registro);
+    public void agregarClientes(String nombre, String apellido, String email, String contrasena, String telefono, Date fecha_registro){
+        ClienteModel datos = new ClienteModel(nombre, apellido,email,contrasena,telefono,fecha_registro);
 
         try{
             clienteDAO.agregarClientes(datos);
@@ -33,8 +33,8 @@ public class ClienteController {
         }
     }
 
-    public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String telefono, Date fecha_registro) {
-        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido, email, telefono, fecha_registro);
+    public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String contrasena, String telefono, Date fecha_registro) {
+        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido,email,contrasena,telefono,fecha_registro);
         try {
             clienteDAO.actualizarCliente(cliente);
             viewConsole.showMessage("Actualización de cliente correcta\n");

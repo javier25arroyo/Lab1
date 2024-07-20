@@ -239,25 +239,22 @@ public class Main {
 
     public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
-        String nombre;
-        String apellido;
-        String email;
-        String telefono;
-        Date fecha_registro = null;
 
         System.out.println("Digite el nombre del cliente:");
-       nombre = scanner.nextLine();
+        String nombre = scanner.nextLine();
         System.out.println("Digite el apellido del cliente:");
-        apellido = scanner.nextLine();
+        String apellido = scanner.nextLine();
         System.out.println("Digite el email del cliente:");
-        email = scanner.nextLine();
+        String email = scanner.nextLine();
+        System.out.println("Digite la contraseña del cliente:");
+        String contrasena = scanner.nextLine();
         System.out.println("Digite el teléfono del cliente:");
-        telefono = scanner.nextLine();
+        String telefono = scanner.nextLine();
         System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
-        fecha_registro= Date.valueOf(scanner.nextLine());
+        Date fecha_registro= Date.valueOf(scanner.nextLine());
 
 
-        clienteController.agregarClientes(nombre, apellido, email, telefono, fecha_registro);
+        clienteController.agregarClientes(nombre, apellido, email, telefono, contrasena,fecha_registro);
     }
 
     public static void retornarCliente() {
@@ -273,6 +270,7 @@ public class Main {
         String nombre;
         String apellido;
         String email;
+        String contrasena;
         String telefono;
         Date fecha_registro = null;
 
@@ -282,11 +280,13 @@ public class Main {
         apellido = scanner.nextLine();
         System.out.println("Digite el email del cliente:");
         email = scanner.nextLine();
+        System.out.println("Digite la contraseña del cliente:");
+        contrasena = scanner.nextLine();
         System.out.println("Digite el teléfono del cliente:");
         telefono = scanner.nextLine();
         System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
         fecha_registro= Date.valueOf(scanner.nextLine());
-        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, telefono, fecha_registro);
+        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, contrasena, telefono,fecha_registro);
     }
 
     public static void eliminarCliente() {

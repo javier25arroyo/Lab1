@@ -17,26 +17,28 @@ public class ClienteDAO {
     }
 
     public void agregarClientes(ClienteModel objeto) throws SQLException {
-        String query = "INSERT INTO `clientes_JA_EM`(`nombre`, `apellido`, `email`, `telefono`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `clientes_JA_EM`(`nombre`, `apellido`, `email`, `contrasena`, `telefono`, `fecha_registro`) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, objeto.getNombre());
             stmt.setString(2, objeto.getApellido());
             stmt.setString(3, objeto.getEmail());
-            stmt.setString(4, objeto.getTelefono());
-            stmt.setDate(5, objeto.getFechaRegistro());
+            stmt.setString(4, objeto.getContrasena());
+            stmt.setString(5, objeto.getTelefono());
+            stmt.setDate(6, objeto.getFechaRegistro());
             stmt.executeUpdate();
         }
     }
 
     public void actualizarCliente(ClienteModel cliente) throws SQLException {
-        String query = "UPDATE `clientes_JA_EM` SET `nombre` = ?, `apellido` = ?, `email` = ?, `telefono` = ?, `fecha_registro` = ? WHERE `cliente_id` = ?";
+        String query = "UPDATE `clientes_JA_EM` SET `nombre` = ?, `apellido` = ?, `email` = ?, `contrasena` = ?,`telefono` = ?, `fecha_registro` = ? WHERE `cliente_id` = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, cliente.getNombre());
             stmt.setString(2, cliente.getApellido());
             stmt.setString(3, cliente.getEmail());
-            stmt.setString(4, cliente.getTelefono());
-            stmt.setDate(5, cliente.getFechaRegistro());
-            stmt.setInt(6, cliente.getCliente_id());
+            stmt.setString(4, cliente.getContrasena());
+            stmt.setString(5, cliente.getTelefono());
+            stmt.setDate(6, cliente.getFechaRegistro());
+            stmt.setInt(7, cliente.getCliente_id());
             stmt.executeUpdate();
         }
     }
@@ -52,7 +54,7 @@ public class ClienteDAO {
 
         List<ClienteModel> clientes= new ArrayList<>();
 
-        String query="SELECT `cliente_id`, `nombre`, `apellido`, `email`, `telefono`,`fecha_registro` from `clientes_JA_EM`";
+        String query="SELECT `cliente_id`, `nombre`, `apellido`, `email`, `contrasena`,`telefono`,`fecha_registro` from `clientes_JA_EM`";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet rs =stmt.executeQuery();
@@ -62,6 +64,7 @@ public class ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("email"),
+                        rs.getString("contrasena"),
                         rs.getString("telefono"),
                         rs.getDate("fecha_registro")
                 );
