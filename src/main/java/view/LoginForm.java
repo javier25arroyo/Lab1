@@ -33,18 +33,18 @@ public class LoginForm extends JDialog {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 abrirConexion();
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid email or phone");
+                JOptionPane.showMessageDialog(null, "Invalid email or password");
             }
         } catch (SQLException ex) {
             manejarErrorDeBaseDeDatos(ex);
         }
     }
 
-    private boolean validateLogin(String email, String phone) throws SQLException {
+    private boolean validateLogin(String email, String password) throws SQLException {
         Connection connection = Conexion.getConnection();
         ClienteDAO clienteDAO = new ClienteDAO(connection);
         ClienteModel cliente = clienteDAO.getClienteByEmail(email);
-        return cliente != null && cliente.getTelefono().equals(phone);
+        return cliente != null && cliente.getContrasena().equals(password);
     }
 
     private void abrirConexion() {
