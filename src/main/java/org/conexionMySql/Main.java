@@ -240,21 +240,21 @@ public class Main {
     public static void registroCliente() {
         ClienteController clienteController = new ClienteController(consoleView);
 
+
         System.out.println("Digite el nombre del cliente:");
         String nombre = scanner.nextLine();
         System.out.println("Digite el apellido del cliente:");
         String apellido = scanner.nextLine();
         System.out.println("Digite el email del cliente:");
         String email = scanner.nextLine();
-        System.out.println("Digite la contraseña del cliente:");
-        String contrasena = scanner.nextLine();
         System.out.println("Digite el teléfono del cliente:");
         String telefono = scanner.nextLine();
         System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
         Date fecha_registro= Date.valueOf(scanner.nextLine());
+        System.out.println("Digite la contraseña del cliente:");
+        String contrasena = scanner.nextLine();
 
-
-        clienteController.agregarClientes(nombre, apellido, email, telefono, contrasena,fecha_registro);
+        clienteController.agregarClientes(nombre, apellido, email, telefono,fecha_registro, contrasena);
     }
 
     public static void retornarCliente() {
@@ -280,12 +280,13 @@ public class Main {
         apellido = scanner.nextLine();
         System.out.println("Digite el email del cliente:");
         email = scanner.nextLine();
-        System.out.println("Digite la contraseña del cliente:");
-        contrasena = scanner.nextLine();
         System.out.println("Digite el teléfono del cliente:");
         telefono = scanner.nextLine();
         System.out.println("Digite la fecha de registro del cliente (Formato: yyyy-MM-dd):");
         fecha_registro= Date.valueOf(scanner.nextLine());
+        System.out.println("Digite la contraseña del cliente:");
+        contrasena = scanner.nextLine();
+
         clienteController.actualizarCliente(id_cliente, nombre, apellido, email, contrasena, telefono,fecha_registro);
     }
 

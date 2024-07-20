@@ -22,7 +22,7 @@ public class ClienteController {
         this.clienteDAO = new ClienteDAO(connection);
     }
 
-    public void agregarClientes(String nombre, String apellido, String email, String contrasena, String telefono, Date fecha_registro){
+    public void agregarClientes(String nombre, String apellido, String email, String telefono, Date fecha_registro, String contrasena){
         ClienteModel datos = new ClienteModel(nombre, apellido,email,contrasena,telefono,fecha_registro);
 
         try{
