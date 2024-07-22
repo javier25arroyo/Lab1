@@ -26,10 +26,10 @@ public class LoginForm extends JDialog {
 
     private void iniciarSesion() {
         String email = emailField1.getText();
-        String phone = new String(passwordField1.getPassword());
+        String contrasena = new String(passwordField1.getPassword());
 
         try {
-            if (validateLogin(email, phone)) {
+            if (validateLogin(email, contrasena)) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 abrirConexion();
             } else {
@@ -40,11 +40,11 @@ public class LoginForm extends JDialog {
         }
     }
 
-    private boolean validateLogin(String email, String phone) throws SQLException {
+    private boolean validateLogin(String email, String contrasena) throws SQLException {
         Connection connection = Conexion.getConnection();
         ClienteDAO clienteDAO = new ClienteDAO(connection);
         ClienteModel cliente = clienteDAO.getClienteByEmail(email);
-        return cliente != null && cliente.getTelefono().equals(phone);
+        return cliente != null && cliente.getContrasena().equals(contrasena);
     }
 
     private void abrirConexion() {

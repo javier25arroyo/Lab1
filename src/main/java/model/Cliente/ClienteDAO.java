@@ -1,7 +1,5 @@
 package model.Cliente;
 
-import model.Empleado.EmpleadoModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +63,6 @@ public class ClienteDAO {
                         rs.getString("apellido"),
                         rs.getString("email"),
                         rs.getString("contrasena"),
-                        rs.getString("telefono"),
                         rs.getDate("fecha_registro")
                 );
                 clientes.add(cliente);
@@ -86,7 +83,7 @@ public class ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("email"),
-                        rs.getString("telefono"),
+                        rs.getString("contrasena"),
                         rs.getDate("fecha_registro")
                 );
             }

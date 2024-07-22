@@ -20,7 +20,7 @@ public class ClienteModel {
             this.fechaRegistro = fechaRegistro;
         }
 
-    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String contrasena, String telefono, Date fechaRegistro) {
+    public ClienteModel(int cliente_id, String nombre, String apellido, String email, String contrasena, Date fechaRegistro) {
         this.cliente_id = cliente_id;
         this.nombre = nombre;
         this.apellido = apellido;

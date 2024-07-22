@@ -3,7 +3,6 @@ package controller;
 import model.Cliente.ClienteDAO;
 import model.Cliente.ClienteModel;
 import model.Conexion;
-import model.Empleado.EmpleadoModel;
 import view.ConsoleView;
 
 import java.sql.Connection;
@@ -34,7 +33,7 @@ public class ClienteController {
     }
 
     public void actualizarCliente(int id_cliente, String nombre, String apellido, String email, String contrasena, String telefono, Date fecha_registro) {
-        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido,email,contrasena,telefono,fecha_registro);
+        ClienteModel cliente = new ClienteModel(id_cliente, nombre, apellido,email,contrasena, fecha_registro);
         try {
             clienteDAO.actualizarCliente(cliente);
             viewConsole.showMessage("Actualización de cliente correcta\n");
