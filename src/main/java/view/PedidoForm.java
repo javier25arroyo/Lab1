@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class PedidoForm {
+
     private JPanel PedidoForm;
     private JTextField textClienteID;
     private JTextField textFecha;
@@ -93,6 +94,9 @@ public class PedidoForm {
 
         pedidoController.agregarPedido(clienteId, fechaPedido, total, estado);
         JOptionPane.showMessageDialog(null, "El pedido fue agregado con éxito");
+    }
+    public JPanel getPanel() {
+        return PedidoForm;
     }
 
     public void buscarPedido() {

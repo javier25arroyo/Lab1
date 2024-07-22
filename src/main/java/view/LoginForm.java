@@ -4,6 +4,7 @@ import controller.ConexionController;
 import model.Cliente.ClienteDAO;
 import model.Cliente.ClienteModel;
 import model.Conexion;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ public class LoginForm extends JDialog {
         setTitle("Login Form");
         setSize(600, 500);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         iniciarSesionButton.addActionListener(e -> iniciarSesion());
@@ -26,12 +28,12 @@ public class LoginForm extends JDialog {
 
     private void iniciarSesion() {
         String email = emailField1.getText();
-        String phone = new String(passwordField1.getPassword());
+        String password = new String(passwordField1.getPassword());
 
         try {
-            if (validateLogin(email, phone)) {
+            if (validateLogin(email, password)) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
-                abrirConexion();
+                abrirClienteForm();
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid email or password");
             }
@@ -47,14 +49,15 @@ public class LoginForm extends JDialog {
         return cliente != null && cliente.getContrasena().equals(password);
     }
 
-    private void abrirConexion() {
-        Connection connection = Conexion.getConnection();
-        if (connection != null) {
-            ConexionController conexionController = new ConexionController(new ConsoleView());
-            conexionController.openConnection();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al conectar al servidor remoto");
-        }
+    private void abrirClienteForm() {
+        dispose(); // Cierra la ventana de login
+        JFrame clienteFrame = new JFrame("Cliente Form");
+        ClienteForm clienteForm = new ClienteForm();
+        clienteFrame.setContentPane(clienteForm.getPanel());
+        clienteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        clienteFrame.pack();
+        clienteFrame.setLocationRelativeTo(null);
+        clienteFrame.setVisible(true);
     }
 
     private void manejarErrorDeBaseDeDatos(SQLException ex) {
@@ -63,6 +66,6 @@ public class LoginForm extends JDialog {
     }
 
     public static void main(String[] args) {
-        new LoginForm();
+        SwingUtilities.invokeLater(() -> new LoginForm());
     }
 }
