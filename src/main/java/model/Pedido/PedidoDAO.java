@@ -45,9 +45,9 @@ public class PedidoDAO {
             stmt.executeUpdate();
         }
     }
-    public List<model.Pedido.PedidoModel> obtenerTodosLosPedidos()throws SQLException{
+    public List<PedidoModel> obtenerTodosLosPedidos()throws SQLException{
 
-        List<model.Pedido.PedidoModel> pedidos= new ArrayList<>();
+        List<PedidoModel> pedidos = new ArrayList<>();
 
         String query="SELECT `pedido_id`, `cliente_id`, `fecha_pedido`, `total`, `estado` from `pedidos_JA_EM`";
 
