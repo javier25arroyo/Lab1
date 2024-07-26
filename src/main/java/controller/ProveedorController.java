@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cliente.ClienteModel;
 import model.Conexion;
 import model.Proveedor.ProveedorDAO;
 import model.Proveedor.ProveedorModel;
@@ -8,6 +9,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProveedorController {
@@ -50,14 +52,20 @@ public class ProveedorController {
             viewConsole.errorMessage("Error al actualizar proveedor: " + e.getMessage());
         }
     }
-    public void obtenerTodosLosProveedores(){
+    public List<ProveedorModel> obtenerTodosLosProveedores(){
         try {
-            List<ProveedorModel> proveedores=proveedorDAO.obtenerTodosLosProveedores();
-            for (ProveedorModel proveedor: proveedores){
-                viewConsole.showMessage(proveedor.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
+            return proveedorDAO.obtenerTodosLosProveedores();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los proveedores: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+    public ProveedorModel getProveedorByID(int id) {
+        try {
+            return proveedorDAO.getProveedorByID(id);
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar el cliente: " + e.getMessage());
+            return null;
         }
     }
 }

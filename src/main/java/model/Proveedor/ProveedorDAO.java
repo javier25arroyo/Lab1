@@ -1,5 +1,7 @@
 package model.Proveedor;
 
+import model.Cliente.ClienteModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,6 +69,26 @@ public class ProveedorDAO {
             }
         }
         return proveedores;
+    }
+    public ProveedorModel getProveedorByID(int id) throws SQLException {
+        ProveedorModel proveedor = null;
+        String query = "SELECT * FROM `proveedores_JA_EM` WHERE `proveedor_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                proveedor = new ProveedorModel(
+                        rs.getInt("proveedor_id"),
+                        rs.getString("nombre"),
+                        rs.getString("direccion"),
+                        rs.getString("telefono"),
+                        rs.getString("email"),
+                        rs.getDate("fecha_registro")
+
+                );
+            }
+        }
+        return proveedor;
     }
 }
 

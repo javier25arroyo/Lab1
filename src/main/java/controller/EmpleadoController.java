@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cliente.ClienteModel;
 import model.Conexion;
 import model.Empleado.EmpleadoDAO;
 import model.Empleado.EmpleadoModel;
@@ -52,14 +53,11 @@ public class EmpleadoController {
     }
     public List<EmpleadoModel> obtenerTodosLosEmpleados(){
         try {
-            List<EmpleadoModel> empleados=empleadoDAO.obtenerTodosLosEmpleados();
-            for (EmpleadoModel empleado: empleados){
-                viewConsole.showMessage(empleado.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
+            return empleadoDAO.obtenerTodosLosEmpleados();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los empleados: " + e.getMessage());
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
     }
 
     public EmpleadoModel getEmpleadoByID(int empleado_id) {
