@@ -25,6 +25,7 @@ public class ClienteForm {
     private JButton buscarButton;
     private JTextField textID;
     private JButton irAPedidoButton;
+    private JButton atrasButton;
     private ClienteController clienteController;
     private DefaultTableModel tableModel;
 

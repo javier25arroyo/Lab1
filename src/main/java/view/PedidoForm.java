@@ -24,8 +24,7 @@ public class PedidoForm {
     private JButton buscarButton;
     private JTextField textID;
     private JButton irAClientesButton;
-    private JButton button2;
-    private JButton button3;
+    private JButton atrasButton;
 
     private PedidoController pedidoController;
     private DefaultTableModel tableModel;

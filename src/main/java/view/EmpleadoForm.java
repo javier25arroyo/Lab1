@@ -24,6 +24,7 @@ public class EmpleadoForm {
     private JButton buscarButton;
     private JTextField textID;
     private JButton irAPedidoButton;
+    private JButton atrasButton;
     private EmpleadoController empleadoController;
     private DefaultTableModel tableModel;
 

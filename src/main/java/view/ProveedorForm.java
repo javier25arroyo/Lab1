@@ -25,6 +25,7 @@ public class ProveedorForm {
     private JButton buscarButton;
     private JTextField textID;
     private JButton irAPedidoButton;
+    private JButton atrasButton;
     private ProveedorController proveedorController;
     private DefaultTableModel tableModel;
 
