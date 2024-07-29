@@ -7,6 +7,7 @@ import view.ConsoleView;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteRolController {
@@ -50,15 +51,22 @@ public class ClienteRolController {
         }
     }
 
-    public void obtenerClienteRol(){
+    public List<ClienteRolModel> obtenerClienteRol(){
         try {
-            List<ClienteRolModel> clienteRoles=clienteRolDAO.obtenerClienteRol();
-            for (ClienteRolModel clienteRol: clienteRoles){
-                viewConsole.showMessage(clienteRol.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los clienteRoles"+e.getMessage());
+            return clienteRolDAO.obtenerClienteRol();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los clienteRol: " + e.getMessage());
+            return new ArrayList<>();
         }
+
     }
 
+    public ClienteRolModel getClienteRolByID(int id) {
+        try{
+            return clienteRolDAO.getClienteRolByID(id);
+        }catch (SQLException e){
+            viewConsole.errorMessage("Error al recuperar el clienteRol: " + e.getMessage());
+            return null;
+        }
+    }
 }

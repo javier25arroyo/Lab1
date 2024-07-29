@@ -24,6 +24,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono" style="3"/>
+              <foreground color="-16777216"/>
               <text value="Cliente - Rol"/>
             </properties>
           </component>
@@ -33,6 +34,7 @@
             </constraints>
             <properties>
               <background color="-16777216"/>
+              <font name="JetBrains Mono"/>
               <foreground color="-16777216"/>
               <text value="Id del cliente"/>
             </properties>
@@ -64,6 +66,7 @@
             </constraints>
             <properties>
               <background color="-16777216"/>
+              <font name="JetBrains Mono"/>
               <foreground color="-16777216"/>
               <text value="Id del rol"/>
             </properties>
