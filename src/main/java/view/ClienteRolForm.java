@@ -11,6 +11,7 @@ import static org.conexionMySql.Main.eliminarClienteRol;
 
 public class ClienteRolForm {
     private JPanel ClienteRolForm;
+    private JPanel panel1;
     private JTextField textIdClienteTextField;
     private JTextField textIdRol;
     private JButton guardarButton;
@@ -25,7 +26,7 @@ public class ClienteRolForm {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ClienteRolForm");
-        frame.setContentPane(new ClienteRolForm().ClienteRolForm);
+        frame.setContentPane(new ClienteRolForm().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -73,7 +74,7 @@ public class ClienteRolForm {
     }
 
     public JPanel getPanel() {
-        return ClienteRolForm;
+        return panel1;
     }
 
     private void agregarClienteRol() {
