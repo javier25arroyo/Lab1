@@ -22,6 +22,48 @@ public class MenuForm {
                 abrirClienteForm();
             }
         });
+
+        EmpleadoForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirEmpleadoForm();
+            }
+        });
+
+        PedidoForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPedidoForm();
+            }
+        });
+
+        ProductoForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirProductoForm();
+            }
+        });
+
+        ProveedorForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirProveedorForm();
+            }
+        });
+
+        RolForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirRolForm();
+            }
+        });
+
+        CRForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirClienteForm();
+            }
+        });
     }
 
     public Container getPanel() {
@@ -32,6 +74,66 @@ public class MenuForm {
         JFrame frame = new JFrame("ClienteForm");
         ClienteForm clienteForm = new ClienteForm();
         frame.setContentPane(clienteForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirEmpleadoForm() {
+        JFrame frame = new JFrame("EmpleadoForm");
+        EmpleadoForm empleadoForm = new EmpleadoForm();
+        frame.setContentPane(empleadoForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirPedidoForm() {
+        JFrame frame = new JFrame("PedidoForm");
+        PedidoForm pedidoForm = new PedidoForm();
+        frame.setContentPane(pedidoForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirProductoForm() {
+        JFrame frame = new JFrame("ProductoForm");
+        ProductoForm productoForm = new ProductoForm();
+        frame.setContentPane(productoForm.getProductoForm());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirProveedorForm() {
+        JFrame frame = new JFrame("ProveedorForm");
+        ProveedorForm proveedorForm = new ProveedorForm();
+        frame.setContentPane(proveedorForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirRolForm() {
+        JFrame frame = new JFrame("RolForm");
+        RolForm rolForm = new RolForm();
+        frame.setContentPane(rolForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void CRForm() {
+        JFrame frame = new JFrame("CRForm");
+        ClienteRolForm clienteRolForm = new ClienteRolForm();
+        frame.setContentPane(clienteRolForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);

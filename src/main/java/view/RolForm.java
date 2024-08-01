@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RolForm {
     private JPanel panel1;
@@ -13,4 +14,8 @@ public class RolForm {
     private JButton buscarButton;
     private JTextField textID;
     private JButton atrasButton;
+
+    public JPanel getPanel() {
+        return panel1;
+    }
 }
