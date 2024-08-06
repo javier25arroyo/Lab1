@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cliente.ClienteModel;
 import model.Rol.RolDAO;
 import view.ConsoleView;
 import model.Conexion;
@@ -7,6 +8,7 @@ import model.Rol.RolModel;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RolController {
@@ -50,14 +52,20 @@ public class RolController {
         }
     }
 
-    public void obtenerTodosLosRoles(){
+    public List<RolModel> obtenerTodosLosRoles(){
         try {
-            List<RolModel> roles=rolDAO.obtenerTodosLosRoles();
-            for (RolModel rol: roles){
-                viewConsole.showMessage(rol.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los roles"+e.getMessage());
+            return rolDAO.obtenerTodosLosRoles();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los clientes: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+    public RolModel getRolByID(int id) {
+        try {
+            return rolDAO.getRolByID(id);
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar el rol: " + e.getMessage());
+            return null;
         }
     }
 

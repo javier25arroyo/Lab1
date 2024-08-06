@@ -1,5 +1,7 @@
 package model.Rol;
 
+import model.Cliente.ClienteModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +58,22 @@ public class RolDAO {
             }
         }
         return roles;
+    }
+    public RolModel getRolByID(int id) throws SQLException {
+        RolModel rol = null;
+        String query = "SELECT * FROM `Rol_JA_EM` WHERE `id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                rol = new RolModel(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("descripcion")
+                );
+            }
+        }
+        return rol;
     }
 }
 

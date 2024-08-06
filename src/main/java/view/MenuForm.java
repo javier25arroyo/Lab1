@@ -15,6 +15,14 @@ public class MenuForm {
     private JButton RolForm;
     private JButton CRForm;
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("MenuForm");
+        frame.setContentPane(new MenuForm().panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
     public MenuForm() {
         ClienteForm.addActionListener(new ActionListener() {
             @Override

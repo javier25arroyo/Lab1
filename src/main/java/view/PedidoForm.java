@@ -77,12 +77,6 @@ public class PedidoForm {
         });
 
         cargarPedidos();
-        irAClientesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
     public void agregarPedido() {
