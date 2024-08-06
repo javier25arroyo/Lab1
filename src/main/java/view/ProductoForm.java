@@ -34,7 +34,7 @@ public class ProductoForm {
         JFrame frame = new JFrame("ProductoForm");
         frame.setContentPane(new ProductoForm().ProductoForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,600);
         frame.setVisible(true);
     }
     public ProductoForm() {

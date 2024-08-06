@@ -32,7 +32,7 @@ public class EmpleadoForm {
         JFrame frame = new JFrame("EmpleadoForm");
         frame.setContentPane(new EmpleadoForm().EmpleadoForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,600);
         frame.setVisible(true);
     }
 

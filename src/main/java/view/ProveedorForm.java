@@ -33,7 +33,7 @@ public class ProveedorForm {
         JFrame frame = new JFrame("ProveedorForm");
         frame.setContentPane(new ProveedorForm().ProveedorForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,400);
         frame.setVisible(true);
     }
 
