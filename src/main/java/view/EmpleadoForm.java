@@ -62,12 +62,7 @@ public class EmpleadoForm {
         });
 
         cargarEmpleados();
-        irAPedidoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirPedidoForm();
-            }
-        });
+
     }
 
     public JPanel getPanel() {

@@ -33,7 +33,7 @@ public class ClienteForm {
         JFrame frame = new JFrame("ClienteForm");
         frame.setContentPane(new ClienteForm().ClienteForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,600);
         frame.setVisible(true);
     }
 
@@ -63,12 +63,7 @@ public class ClienteForm {
         });
 
         cargarClientes();
-        irAPedidoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirPedidoForm();
-            }
-        });
+
     }
 
     public JPanel getPanel() {

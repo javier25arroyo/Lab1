@@ -155,7 +155,7 @@ public class Main {
                         registroProducto();
                         break;
                     case "2":
-                        retornarProducto();
+                        //retornarProducto();
                         break;
                     case "3":
                         actualizarProducto();
@@ -432,10 +432,10 @@ public class Main {
         productoController.agregarProducto(nombreProducto, descripcion, precio, stock, fecha_creacion);
     }
 
-    public static void retornarProducto() {
-        ProductoController productoController = new ProductoController(consoleView);
-        productoController.obtenerTodosLosProdutos();
-    }
+//    public static void retornarProducto() {
+//        ProductoController productoController = new ProductoController(consoleView);
+//        productoController.obtenerTodosLosProdutos();
+//    }
 
     public static void actualizarProducto() {
         ProductoController productoController = new ProductoController(consoleView);

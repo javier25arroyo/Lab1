@@ -34,7 +34,7 @@ public class ClienteRolForm {
 
     public ClienteRolForm(){
         clienteRolController = new ClienteRolController(new ConsoleView());
-        tableModel = new DefaultTableModel(new Object[]{"cliente_id", "rol_id"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"id","cliente_id", "rol_id"}, 0);
         table1.setModel(tableModel);
 
         guardarButton.addActionListener(e -> {
@@ -84,6 +84,11 @@ public class ClienteRolForm {
         clienteRolController.agregarClienteRol(cliente_id, rol_id);
         JOptionPane.showMessageDialog(null, "ClienteRol agregado correctamente");
     }
+    public void eliminarClienteRol() {
+        int id = Integer.parseInt(textID.getText());
+        clienteRolController.eliminarClienteRol(id);
+        JOptionPane.showMessageDialog(null, "El clienteRol fue eliminado con éxito");
+    }
 
     public void buscarClienteRol() {
         int id = Integer.parseInt(textID.getText());
@@ -107,7 +112,7 @@ public class ClienteRolForm {
         try{
             List<ClienteRolModel> clienteRoles = clienteRolController.obtenerClienteRol();
             for (ClienteRolModel clienteRol : clienteRoles)
-                tableModel.addRow(new Object[]{clienteRol.getFK_idCliente(), clienteRol.getFK_idRol()});
+                tableModel.addRow(new Object[]{clienteRol.getId(),clienteRol.getFK_idCliente(), clienteRol.getFK_idRol()});
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al cargar los clienteRoles");
         }

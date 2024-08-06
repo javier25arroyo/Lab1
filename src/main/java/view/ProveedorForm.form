@@ -13,7 +13,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-2503245"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="e0ab3" class="javax.swing.JLabel">
@@ -31,6 +33,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Nombre del Proveedor:"/>
             </properties>
           </component>
@@ -40,6 +43,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Direccion del proveedor:"/>
             </properties>
           </component>
@@ -49,6 +53,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Telefono:"/>
             </properties>
           </component>
@@ -91,7 +96,9 @@
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-10064257"/>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Guardar"/>
             </properties>
           </component>
@@ -115,7 +122,9 @@
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-10064257"/>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Eliminar"/>
             </properties>
           </component>
@@ -124,7 +133,9 @@
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-10064257"/>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Actualizar"/>
             </properties>
           </component>
@@ -133,7 +144,9 @@
               <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-10064257"/>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Buscar"/>
             </properties>
           </component>
@@ -145,6 +158,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Email:"/>
             </properties>
           </component>
@@ -158,21 +172,13 @@
               <font name="JetBrains Mono"/>
             </properties>
           </component>
-          <component id="9ee28" class="javax.swing.JButton" binding="irAPedidoButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="JetBrains Mono"/>
-              <text value="Ir a Pedido"/>
-            </properties>
-          </component>
           <component id="eeb0f" class="javax.swing.JLabel">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Fecha Registro (Formato: yyyy-MM-dd):"/>
             </properties>
           </component>
@@ -189,7 +195,9 @@
               <grid row="8" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-10064257"/>
               <font name="JetBrains Mono"/>
+              <foreground color="-16777216"/>
               <text value="Atras"/>
             </properties>
           </component>
