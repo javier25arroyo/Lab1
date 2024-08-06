@@ -69,7 +69,7 @@ public class MenuForm {
         CRForm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                abrirClienteForm();
+                CRForm();
             }
         });
     }
@@ -83,7 +83,7 @@ public class MenuForm {
         ClienteForm clienteForm = new ClienteForm();
         frame.setContentPane(clienteForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -93,7 +93,7 @@ public class MenuForm {
         EmpleadoForm empleadoForm = new EmpleadoForm();
         frame.setContentPane(empleadoForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1400,600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -113,7 +113,7 @@ public class MenuForm {
         ProductoForm productoForm = new ProductoForm();
         frame.setContentPane(productoForm.getProductoForm());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -123,7 +123,7 @@ public class MenuForm {
         ProveedorForm proveedorForm = new ProveedorForm();
         frame.setContentPane(proveedorForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1200,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -139,7 +139,7 @@ public class MenuForm {
     }
 
     private void CRForm() {
-        JFrame frame = new JFrame("CRForm");
+        JFrame frame = new JFrame("panel1");
         ClienteRolForm clienteRolForm = new ClienteRolForm();
         frame.setContentPane(clienteRolForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
