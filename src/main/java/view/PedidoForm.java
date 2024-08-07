@@ -23,9 +23,6 @@ public class PedidoForm {
     private JButton actualizarButton;
     private JButton buscarButton;
     private JTextField textID;
-    private JButton irAClientesButton;
-    private JButton atrasButton;
-
     private PedidoController pedidoController;
     private DefaultTableModel tableModel;
 
@@ -33,7 +30,7 @@ public class PedidoForm {
         JFrame frame = new JFrame("PedidoForm");
         frame.setContentPane(new PedidoForm().PedidoForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000,500);
         frame.setVisible(true);
     }
 

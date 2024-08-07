@@ -56,7 +56,7 @@ public class RolForm {
         JFrame frame = new JFrame("RolForm");
         frame.setContentPane(new RolForm().RolForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000,500);
         frame.setVisible(true);
     }
 

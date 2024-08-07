@@ -19,7 +19,7 @@ public class MenuForm {
         JFrame frame = new JFrame("MenuForm");
         frame.setContentPane(new MenuForm().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(500,400);
         frame.setVisible(true);
     }
 
@@ -83,7 +83,7 @@ public class MenuForm {
         ClienteForm clienteForm = new ClienteForm();
         frame.setContentPane(clienteForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1200,600);
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -93,7 +93,7 @@ public class MenuForm {
         EmpleadoForm empleadoForm = new EmpleadoForm();
         frame.setContentPane(empleadoForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1400,600);
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -113,7 +113,7 @@ public class MenuForm {
         ProductoForm productoForm = new ProductoForm();
         frame.setContentPane(productoForm.getProductoForm());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1200,600);
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -123,7 +123,7 @@ public class MenuForm {
         ProveedorForm proveedorForm = new ProveedorForm();
         frame.setContentPane(proveedorForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1200,400);
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -133,7 +133,7 @@ public class MenuForm {
         RolForm rolForm = new RolForm();
         frame.setContentPane(rolForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -143,7 +143,7 @@ public class MenuForm {
         ClienteRolForm clienteRolForm = new ClienteRolForm();
         frame.setContentPane(clienteRolForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000,500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

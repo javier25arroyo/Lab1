@@ -21,6 +21,7 @@ public class LoginForm extends JFrame {
         setTitle("Login Form");
         setSize(800, 600);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         iniciarSesionButton.addActionListener(new ActionListener() {
@@ -56,7 +57,7 @@ public class LoginForm extends JFrame {
         MenuForm menuForm = new MenuForm();
         menuFrame.setContentPane(menuForm.getPanel());
         menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.pack();
+        menuFrame.setSize(500,400);
         menuFrame.setLocationRelativeTo(null);
         menuFrame.setVisible(true);
     }

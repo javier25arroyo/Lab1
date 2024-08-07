@@ -168,7 +168,7 @@
           </component>
           <component id="dc25b" class="javax.swing.JTextField" binding="textID">
             <constraints>
-              <grid row="8" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="8" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -204,17 +204,6 @@
               </component>
             </children>
           </scrollpane>
-          <component id="7bc4f" class="javax.swing.JButton" binding="atrasButton" default-binding="true">
-            <constraints>
-              <grid row="8" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-10064257"/>
-              <font name="JetBrains Mono"/>
-              <foreground color="-16777216"/>
-              <text value="Atras"/>
-            </properties>
-          </component>
         </children>
       </grid>
     </children>

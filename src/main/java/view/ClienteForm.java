@@ -24,8 +24,6 @@ public class ClienteForm {
     private JButton actualizarButton;
     private JButton buscarButton;
     private JTextField textID;
-    private JButton irAPedidoButton;
-    private JButton atrasButton;
     private ClienteController clienteController;
     private DefaultTableModel tableModel;
 
@@ -33,7 +31,7 @@ public class ClienteForm {
         JFrame frame = new JFrame("ClienteForm");
         frame.setContentPane(new ClienteForm().ClienteForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200,600);
+        frame.setSize(1000,500);
         frame.setVisible(true);
     }
 

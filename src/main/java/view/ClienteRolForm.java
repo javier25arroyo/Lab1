@@ -28,7 +28,7 @@ public class ClienteRolForm {
         JFrame frame = new JFrame("ClienteRolForm");
         frame.setContentPane(new ClienteRolForm().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000,500);
         frame.setVisible(true);
     }
 

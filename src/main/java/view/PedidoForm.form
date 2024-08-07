@@ -162,7 +162,7 @@
           </component>
           <component id="24f17" class="javax.swing.JTextField" binding="textID">
             <constraints>
-              <grid row="7" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="7" column="2" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -178,17 +178,6 @@
               <font name="JetBrains Mono"/>
               <foreground color="-16777216"/>
               <text value="Estado:"/>
-            </properties>
-          </component>
-          <component id="cb00d" class="javax.swing.JButton" binding="atrasButton">
-            <constraints>
-              <grid row="7" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-10064257"/>
-              <font name="JetBrains Mono"/>
-              <foreground color="-16777216"/>
-              <text value="Atrás "/>
             </properties>
           </component>
         </children>

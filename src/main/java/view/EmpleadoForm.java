@@ -23,8 +23,6 @@ public class EmpleadoForm {
     private JButton actualizarButton;
     private JButton buscarButton;
     private JTextField textID;
-    private JButton irAPedidoButton;
-    private JButton atrasButton;
     private EmpleadoController empleadoController;
     private DefaultTableModel tableModel;
 
@@ -32,7 +30,7 @@ public class EmpleadoForm {
         JFrame frame = new JFrame("EmpleadoForm");
         frame.setContentPane(new EmpleadoForm().EmpleadoForm);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200,600);
+        frame.setSize(1000,500);
         frame.setVisible(true);
     }
 
