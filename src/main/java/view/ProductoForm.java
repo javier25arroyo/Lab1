@@ -25,7 +25,6 @@ public class ProductoForm {
     private JButton actualizarButton;
     private JButton buscarButton;
     private JTextField textID;
-    private JButton atrasButton;
     private JTable table1;
     private ProductoController productoController;
     private DefaultTableModel tableModel;

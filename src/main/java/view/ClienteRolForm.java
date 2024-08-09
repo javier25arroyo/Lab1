@@ -20,7 +20,6 @@ public class ClienteRolForm {
     private JButton buscarButton;
     private JTable table1;
     private JTextField textID;
-    private JButton atrasButton;
     private ClienteRolController clienteRolController;
     private DefaultTableModel tableModel;
 
@@ -58,10 +57,6 @@ public class ClienteRolForm {
         });
 
         cargarClienteRoles();
-        atrasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { abrirMenu();}
-        });
     }
 
     private void updateClienteRol() {

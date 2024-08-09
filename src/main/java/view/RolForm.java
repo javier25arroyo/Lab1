@@ -19,7 +19,6 @@ public class RolForm {
     private JButton actualizarButton;
     private JButton buscarButton;
     private JTextField textID;
-    private JButton atrasButton;
     private RolController rolController;
     private DefaultTableModel tableModel;
 
