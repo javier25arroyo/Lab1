@@ -24,6 +24,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono" style="3"/>
+              <foreground color="-16777216"/>
               <text value="Clientes"/>
             </properties>
           </component>
