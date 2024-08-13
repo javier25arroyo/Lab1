@@ -62,10 +62,9 @@ public class ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("email"),
+                        rs.getString("contrasena"),
                         rs.getString("telefono"),
-                        rs.getDate("fecha_registro"),
-                        rs.getString("contrasena")
-
+                        rs.getDate("fecha_registro")
                 );
                 clientes.add(cliente);
             }
@@ -107,9 +106,7 @@ public class ClienteDAO {
                         rs.getString("apellido"),
                         rs.getString("email"),
                         rs.getString("telefono"),
-                        rs.getDate("fecha_registro"),
-                        rs.getString("contrasena")
-
+                        rs.getDate("fecha_registro")
                 );
             }
         }
