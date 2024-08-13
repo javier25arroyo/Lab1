@@ -1,5 +1,6 @@
 package model.Producto;
 
+import model.Cliente.ClienteModel;
 import model.Empleado.EmpleadoModel;
 
 import java.sql.Connection;
@@ -68,6 +69,25 @@ public class ProductoDAO {
             }
         }
         return productos;
+    }
+    public ProductoModel getProductoByID(int id) throws SQLException {
+        ProductoModel producto = null;
+        String query = "SELECT * FROM `productos_JA_EM` WHERE `producto_id` = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                producto = new ProductoModel(
+                        rs.getInt("producto_id"),
+                        rs.getString("nombre"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precio"),
+                        rs.getInt("stock"),
+                        rs.getDate("fecha_creacion")
+                );
+            }
+        }
+        return producto;
     }
 }
 

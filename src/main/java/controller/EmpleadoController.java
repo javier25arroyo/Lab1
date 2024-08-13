@@ -1,14 +1,15 @@
 package controller;
 
+import model.Cliente.ClienteModel;
 import model.Conexion;
 import model.Empleado.EmpleadoDAO;
 import model.Empleado.EmpleadoModel;
-import model.Pedido.PedidoModel;
 import view.ConsoleView;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmpleadoController {
@@ -50,14 +51,22 @@ public class EmpleadoController {
             viewConsole.errorMessage("Error al actualizar empleado: " + e.getMessage());
         }
     }
-    public void obtenerTodosLosEmpleados(){
+    public List<EmpleadoModel> obtenerTodosLosEmpleados(){
         try {
-            List<EmpleadoModel> empleados=empleadoDAO.obtenerTodosLosEmpleados();
-            for (EmpleadoModel empleado: empleados){
-                viewConsole.showMessage(empleado.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
+            return empleadoDAO.obtenerTodosLosEmpleados();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los empleados: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    public EmpleadoModel getEmpleadoByID(int empleado_id) {
+        try {
+            return empleadoDAO.getEmpleadoByID(empleado_id);
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar el empleado: " + e.getMessage());
+            return null;
         }
     }
 }
+

@@ -5,10 +5,12 @@ import model.Cliente.ClienteDAO;
 import model.Cliente.ClienteModel;
 import model.Conexion;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class LoginForm extends JDialog {
+public class LoginForm extends JFrame {
     private JTextField emailField1;
     private JPasswordField passwordField1;
     private JButton iniciarSesionButton;
@@ -17,44 +19,47 @@ public class LoginForm extends JDialog {
     public LoginForm() {
         setContentPane(loginPanel);
         setTitle("Login Form");
-        setSize(600, 500);
+        setSize(800, 600);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
-        iniciarSesionButton.addActionListener(e -> iniciarSesion());
-    }
+        iniciarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField1.getText();
+                String password = new String(passwordField1.getPassword());
 
-    private void iniciarSesion() {
-        String email = emailField1.getText();
-        String contrasena = new String(passwordField1.getPassword());
-
-        try {
-            if (validateLogin(email, contrasena)) {
-                JOptionPane.showMessageDialog(null, "Login Successful");
-                abrirConexion();
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid email or phone");
+                try {
+                    if (validateLogin(email, password)) {
+                        JOptionPane.showMessageDialog(null, "Login Successful");
+                        abrirMenuForm();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid email or password");
+                    }
+                } catch (SQLException ex) {
+                    manejarErrorDeBaseDeDatos(ex);
+                }
             }
-        } catch (SQLException ex) {
-            manejarErrorDeBaseDeDatos(ex);
-        }
+        });
     }
 
-    private boolean validateLogin(String email, String contrasena) throws SQLException {
+    private boolean validateLogin(String email, String password) throws SQLException {
         Connection connection = Conexion.getConnection();
         ClienteDAO clienteDAO = new ClienteDAO(connection);
         ClienteModel cliente = clienteDAO.getClienteByEmail(email);
-        return cliente != null && cliente.getContrasena().equals(contrasena);
+        return cliente != null && cliente.getContrasena().equals(password);
     }
 
-    private void abrirConexion() {
-        Connection connection = Conexion.getConnection();
-        if (connection != null) {
-            ConexionController conexionController = new ConexionController(new ConsoleView());
-            conexionController.openConnection();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al conectar al servidor remoto");
-        }
+    private void abrirMenuForm() {
+        dispose(); // Cierra la ventana de login
+        JFrame menuFrame = new JFrame("Menu Form");
+        MenuForm menuForm = new MenuForm();
+        menuFrame.setContentPane(menuForm.getPanel());
+        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuFrame.setSize(500,400);
+        menuFrame.setLocationRelativeTo(null);
+        menuFrame.setVisible(true);
     }
 
     private void manejarErrorDeBaseDeDatos(SQLException ex) {
@@ -63,6 +68,6 @@ public class LoginForm extends JDialog {
     }
 
     public static void main(String[] args) {
-        new LoginForm();
+        SwingUtilities.invokeLater(() -> new LoginForm());
     }
 }

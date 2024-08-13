@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cliente.ClienteModel;
 import model.Conexion;
 import model.Empleado.EmpleadoModel;
 import model.Producto.ProductoDAO;
@@ -9,6 +10,7 @@ import view.ConsoleView;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoController {
@@ -50,14 +52,20 @@ public class ProductoController {
             viewConsole.errorMessage("Error al actualizar producto: " + e.getMessage());
         }
     }
-    public void obtenerTodosLosProdutos(){
+    public List<ProductoModel> obtenerTodosLosProductos(){
         try {
-            List<ProductoModel> productos=productoDAO.obtenerTodosLosProductos();
-            for (ProductoModel producto: productos){
-                viewConsole.showMessage(producto.toString()+"\n");
-            }
-        }catch (SQLException e){
-            viewConsole.errorMessage("Error al recuperar los empleados"+e.getMessage());
+            return productoDAO.obtenerTodosLosProductos();
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar los productos: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+    public ProductoModel getProductoByID(int id) {
+        try {
+            return productoDAO.getProductoByID(id);
+        } catch (SQLException e) {
+            viewConsole.errorMessage("Error al recuperar el producto: " + e.getMessage());
+            return null;
         }
     }
 

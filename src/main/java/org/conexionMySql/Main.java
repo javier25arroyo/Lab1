@@ -155,7 +155,7 @@ public class Main {
                         registroProducto();
                         break;
                     case "2":
-                        retornarProducto();
+                        //retornarProducto();
                         break;
                     case "3":
                         actualizarProducto();
@@ -287,7 +287,7 @@ public class Main {
         System.out.println("Digite la contraseña del cliente:");
         contrasena = scanner.nextLine();
 
-        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, contrasena, telefono,fecha_registro);
+        clienteController.actualizarCliente(id_cliente, nombre, apellido, email, telefono,fecha_registro,contrasena);
     }
 
     public static void eliminarCliente() {
@@ -432,10 +432,10 @@ public class Main {
         productoController.agregarProducto(nombreProducto, descripcion, precio, stock, fecha_creacion);
     }
 
-    public static void retornarProducto() {
-        ProductoController productoController = new ProductoController(consoleView);
-        productoController.obtenerTodosLosProdutos();
-    }
+//    public static void retornarProducto() {
+//        ProductoController productoController = new ProductoController(consoleView);
+//        productoController.obtenerTodosLosProdutos();
+//    }
 
     public static void actualizarProducto() {
         ProductoController productoController = new ProductoController(consoleView);

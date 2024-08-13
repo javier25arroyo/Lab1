@@ -69,6 +69,27 @@ public class EmpleadoDAO {
         }
         return empleados;
     }
+
+    public EmpleadoModel getEmpleadoByID(int id) throws SQLException {
+    EmpleadoModel empleado = null;
+    String query = "SELECT * FROM `empleados_JA_EM` WHERE `empleado_id` = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(query)){
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()){
+            empleado = new EmpleadoModel(
+                    rs.getInt("empleado_id"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("cargo"),
+                    rs.getDouble("salario"),
+                    rs.getDate("fecha_contratacion")
+            );
+        }
+    }
+    return empleado;
+}
+
 }
 
 /*
