@@ -64,7 +64,7 @@ public class ClienteRolForm {
         int cliente_id = Integer.parseInt(textIdClienteTextField.getText());
         int rol_id = Integer.parseInt(textIdRol.getText());
 
-       clienteRolController.actualizarClienteRol(id, cliente_id, rol_id);
+        clienteRolController.actualizarClienteRol(id, cliente_id, rol_id);
         JOptionPane.showMessageDialog(null, "ClienteRol actualizado correctamente");
     }
 
