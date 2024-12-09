@@ -5,8 +5,6 @@ import model.Cliente.ClienteModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class ClienteForm {
 
     public ClienteForm() {
         clienteController = new ClienteController(new ConsoleView());
-        tableModel = new DefaultTableModel(new Object[]{"cliente_id", "nombre", "apellido", "email", "telefono", "fecha_registro", "contrasena"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"cliente_id", "nombre", "apellido", "email", "telefono", "fecha_registro", "contrasena"}, 7);
         table1.setModel(tableModel);
 
         guardarButton.addActionListener(e -> {
@@ -143,14 +141,4 @@ public class ClienteForm {
         textFecha.setText("");
         textContrasena.setText("");
     }
-    public void abrirPedidoForm(){
-        JFrame pedidoFrame = new JFrame("Pedido Form");
-        PedidoForm pedidoForm = new PedidoForm();
-        pedidoFrame.setContentPane(pedidoForm.getPanel());
-        pedidoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Usar DISPOSE_ON_CLOSE para cerrar solo el formulario actual
-        pedidoFrame.pack();
-        pedidoFrame.setLocationRelativeTo(null);
-        pedidoFrame.setVisible(true);
-    }
 }
-
