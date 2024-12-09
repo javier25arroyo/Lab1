@@ -119,5 +119,4 @@ public class RolForm {
         textDescripcion.setText("");
         textID.setText("");
     }
-
 }

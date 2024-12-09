@@ -136,5 +136,4 @@ public class ProductoForm {
         textStock.setText("");
         textFecha.setText("");
     }
-
 }

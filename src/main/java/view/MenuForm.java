@@ -103,6 +103,7 @@ public class MenuForm {
         PedidoForm pedidoForm = new PedidoForm();
         frame.setContentPane(pedidoForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(1000,500);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
