@@ -85,7 +85,7 @@ Si descubre una vulnerabilidad de seguridad, por favor:
 
 ## 📞 Contacto de Seguridad
 
-- **Email de Seguridad**: [javier25arroyo@correo.com]
+- **Email de Seguridad**: [javier25arroyo@gmail.com]
 - **Tiempo de Respuesta**: 24-48 horas
 - **Idiomas**: Español, Inglés
 
