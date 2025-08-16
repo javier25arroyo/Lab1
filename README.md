@@ -150,14 +150,6 @@ java -cp "target/classes:dependencias/*" model.DatabaseDiagnostic
 - **"Unknown database"**: Crear la base de datos `gestion_db` manualmente
 - **"Access denied"**: Verificar credenciales en `database.properties`
 
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crear una rama feature (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit los cambios (`git commit -m 'Agregar nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abrir un Pull Request
-
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
