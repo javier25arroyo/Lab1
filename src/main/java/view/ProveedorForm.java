@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.ProveedorController;
 import model.Proveedor.ProveedorModel;
 
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ProveedorForm {
     private JPanel ProveedorForm;
@@ -29,11 +31,20 @@ public class ProveedorForm {
     private DefaultTableModel tableModel;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ProveedorForm");
-        frame.setContentPane(new ProveedorForm().ProveedorForm);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Gestión de Proveedores");
+            frame.setContentPane(new ProveedorForm().ProveedorForm);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1200, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public ProveedorForm() {
@@ -70,30 +81,67 @@ public class ProveedorForm {
     }
 
     public void agregarProveedor() {
-        String nombre = textNombre.getText();
-        String direccion = textDireccion.getText();
-        String telefono = textTelefono.getText();
-        String email = textEmail.getText();
-        Date fechaRegistro = Date.valueOf(textFecha.getText());
+        try {
+            String nombre = textNombre.getText().trim();
+            String direccion = textDireccion.getText().trim();
+            String telefono = textTelefono.getText().trim();
+            String email = textEmail.getText().trim();
+            
+            if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty() || email.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                JOptionPane.showMessageDialog(null, "El formato del email no es válido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            if (!isValidPhone(telefono)) {
+                JOptionPane.showMessageDialog(null, "El teléfono debe tener entre 8-15 dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            Date fechaRegistro = Date.valueOf(textFecha.getText().trim());
 
-
-        proveedorController.agregarProveedor(nombre, direccion,telefono,email, fechaRegistro);
-        JOptionPane.showMessageDialog(null, "El proveedor fue agregado con éxito");
+            proveedorController.agregarProveedor(nombre, direccion, telefono, email, fechaRegistro);
+            JOptionPane.showMessageDialog(null, "El proveedor fue agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar proveedor: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void buscarProveedor() {
-        int id = Integer.parseInt(textID.getText());
-        ProveedorModel proveedor = proveedorController.getProveedorByID(id);
+        try {
+            String idText = textID.getText().trim();
+            if (idText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un ID de proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int id = Integer.parseInt(idText);
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            ProveedorModel proveedor = proveedorController.getProveedorByID(id);
 
-        if (proveedor == null) {
-            JOptionPane.showMessageDialog(null, "Proveedor no encontrado");
-        } else {
-            textNombre.setText(proveedor.getNombre());
-            textDireccion.setText(proveedor.getDireccion());
-            textTelefono.setText(proveedor.getTelefono());
-            textEmail.setText(proveedor.getEmail());
-            textFecha.setText(proveedor.getFecha_registro().toString());
-
+            if (proveedor == null) {
+                JOptionPane.showMessageDialog(null, "Proveedor no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                textNombre.setText(proveedor.getNombre());
+                textDireccion.setText(proveedor.getDireccion());
+                textTelefono.setText(proveedor.getTelefono());
+                textEmail.setText(proveedor.getEmail());
+                textFecha.setText(proveedor.getFecha_registro().toString());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar proveedor: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -141,7 +189,18 @@ public class ProveedorForm {
         textTelefono.setText("");
         textEmail.setText("");
         textFecha.setText("");
-
+    }
+    
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
+    
+    private boolean isValidPhone(String phone) {
+        String phoneRegex = "^[0-9]{8,15}$";
+        Pattern pattern = Pattern.compile(phoneRegex);
+        return pattern.matcher(phone).matches();
     }
     public void abrirPedidoForm(){
         JFrame pedidoFrame = new JFrame("Pedido Form");

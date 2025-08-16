@@ -23,14 +23,25 @@ public class EmpleadoController {
         this.empleadoDAO = new EmpleadoDAO(connection);
     }
 
-    public void agregarEmpleado(String nombre, String apellido, String cargo,double salario, Date fecha_contratacion){
-        EmpleadoModel datos = new EmpleadoModel(nombre, apellido, cargo, salario, fecha_contratacion);
+    public void agregarEmpleado(String nombre, String apellido, String cargo, double salario, Date fecha_contratacion){
+        if (nombre == null || nombre.trim().isEmpty() || 
+            apellido == null || apellido.trim().isEmpty() || 
+            cargo == null || cargo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nombre, apellido y cargo son obligatorios");
+        }
+        
+        if (salario < 0) {
+            throw new IllegalArgumentException("El salario no puede ser negativo");
+        }
+        
+        EmpleadoModel datos = new EmpleadoModel(nombre.trim(), apellido.trim(), cargo.trim(), salario, fecha_contratacion);
 
         try{
             empleadoDAO.agregarEmpleado(datos);
-            viewConsole.showMessage("Inserccion de datos correcta\n");
+            viewConsole.showMessage("Inserción de datos correcta\n");
         }catch (SQLException e){
-            viewConsole.errorMessage("Error al insertar datos" + e.getMessage());
+            viewConsole.errorMessage("Error al insertar datos: " + e.getMessage());
+            throw new RuntimeException("Error en la base de datos al agregar empleado", e);
         }
     }
     public void eliminarEmpleado(int empleado_id) {

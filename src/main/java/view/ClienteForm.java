@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ClienteForm {
     private JPanel ClienteForm;
@@ -143,6 +144,19 @@ public class ClienteForm {
         textFecha.setText("");
         textContrasena.setText("");
     }
+    
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
+    
+    private boolean isValidPhone(String phone) {
+        String phoneRegex = "^[0-9]{8,15}$";
+        Pattern pattern = Pattern.compile(phoneRegex);
+        return pattern.matcher(phone).matches();
+    }
+    
     public void abrirPedidoForm(){
         JFrame pedidoFrame = new JFrame("Pedido Form");
         PedidoForm pedidoForm = new PedidoForm();

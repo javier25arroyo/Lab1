@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.EmpleadoController;
 import model.Empleado.EmpleadoModel;
 
@@ -27,11 +28,20 @@ public class EmpleadoForm {
     private DefaultTableModel tableModel;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("EmpleadoForm");
-        frame.setContentPane(new EmpleadoForm().EmpleadoForm);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Gestión de Empleados");
+            frame.setContentPane(new EmpleadoForm().EmpleadoForm);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1200, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public EmpleadoForm() {
@@ -68,30 +78,64 @@ public class EmpleadoForm {
     }
 
     public void agregarEmpleado() {
-        String nombre = textNombre.getText();
-        String apellido = textApellido.getText();
-        String cargo = textCargo.getText();
-        Double salario =Double.parseDouble( textSalario.getText());
-        Date fechaContratacion = Date.valueOf(textFecha.getText());
-
-
-        empleadoController.agregarEmpleado(nombre, apellido, cargo, salario, fechaContratacion);
-        JOptionPane.showMessageDialog(null, "El empleado fue agregado con éxito");
+        try {
+            String nombre = textNombre.getText().trim();
+            String apellido = textApellido.getText().trim();
+            String cargo = textCargo.getText().trim();
+            
+            if (nombre.isEmpty() || apellido.isEmpty() || cargo.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            Double salario = Double.parseDouble(textSalario.getText().trim());
+            if (salario < 0) {
+                JOptionPane.showMessageDialog(null, "El salario debe ser un valor positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            Date fechaContratacion = Date.valueOf(textFecha.getText().trim());
+            
+            empleadoController.agregarEmpleado(nombre, apellido, cargo, salario, fechaContratacion);
+            JOptionPane.showMessageDialog(null, "El empleado fue agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El salario debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar empleado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void buscarEmpleado() {
-        int id = Integer.parseInt(textID.getText());
-        EmpleadoModel empleado = empleadoController.getEmpleadoByID(id);
+        try {
+            String idText = textID.getText().trim();
+            if (idText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un ID de empleado", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int id = Integer.parseInt(idText);
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            EmpleadoModel empleado = empleadoController.getEmpleadoByID(id);
 
-        if (empleado == null) {
-            JOptionPane.showMessageDialog(null, "Empleado no encontrado");
-        } else {
-            textNombre.setText(empleado.getNombre());
-            textApellido.setText(empleado.getApellido());
-            textCargo.setText(empleado.getCargo());
-            textSalario.setText(String.valueOf(empleado.getSalario()));
-            textFecha.setText(empleado.getFecha_contratacion().toString());
-
+            if (empleado == null) {
+                JOptionPane.showMessageDialog(null, "Empleado no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                textNombre.setText(empleado.getNombre());
+                textApellido.setText(empleado.getApellido());
+                textCargo.setText(empleado.getCargo());
+                textSalario.setText(String.valueOf(empleado.getSalario()));
+                textFecha.setText(empleado.getFecha_contratacion().toString());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar empleado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

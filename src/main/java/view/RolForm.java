@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.RolController;
 import model.Rol.RolModel;
 
@@ -52,11 +53,20 @@ public class RolForm {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("RolForm");
-        frame.setContentPane(new RolForm().RolForm);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Gestión de Roles");
+            frame.setContentPane(new RolForm().RolForm);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public JPanel getPanel() {
@@ -64,22 +74,48 @@ public class RolForm {
     }
 
     public void agregarRol() {
-        String nombre = textNombre.getText();
-        String descripcion = textDescripcion.getText();
+        try {
+            String nombre = textNombre.getText().trim();
+            String descripcion = textDescripcion.getText().trim();
+            
+            if (nombre.isEmpty() || descripcion.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El nombre y descripción son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        rolController.agregarRol(nombre, descripcion);
-        JOptionPane.showMessageDialog(null, "El rol fue agregado con éxito");
+            rolController.agregarRol(nombre, descripcion);
+            JOptionPane.showMessageDialog(null, "El rol fue agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar rol: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void buscarRol() {
-        int id = Integer.parseInt(textID.getText());
-        RolModel rol = rolController.getRolByID(id);
+        try {
+            String idText = textID.getText().trim();
+            if (idText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un ID de rol", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int id = Integer.parseInt(idText);
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            RolModel rol = rolController.getRolByID(id);
 
-        if (rol == null) {
-            JOptionPane.showMessageDialog(null, "Rol no encontrado");
-        } else {
-            textNombre.setText(rol.getNombre());
-            textDescripcion.setText(rol.getDescripcion());
+            if (rol == null) {
+                JOptionPane.showMessageDialog(null, "Rol no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                textNombre.setText(rol.getNombre());
+                textDescripcion.setText(rol.getDescripcion());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar rol: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

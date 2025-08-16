@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.ClienteRolController;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -7,7 +8,6 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.ClienteRol.ClienteRolModel;
-import static org.conexionMySql.Main.eliminarClienteRol;
 
 public class ClienteRolForm {
     private JPanel ClienteRolForm;
@@ -24,11 +24,20 @@ public class ClienteRolForm {
     private DefaultTableModel tableModel;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ClienteRolForm");
-        frame.setContentPane(new ClienteRolForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Gestión de Cliente-Rol");
+            frame.setContentPane(new ClienteRolForm().panel1);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public ClienteRolForm(){
@@ -73,11 +82,30 @@ public class ClienteRolForm {
     }
 
     private void agregarClienteRol() {
-        int cliente_id = Integer.parseInt(textIdClienteTextField.getText());
-        int rol_id = Integer.parseInt(textIdRol.getText());
+        try {
+            String clienteIdText = textIdClienteTextField.getText().trim();
+            String rolIdText = textIdRol.getText().trim();
+            
+            if (clienteIdText.isEmpty() || rolIdText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int cliente_id = Integer.parseInt(clienteIdText);
+            int rol_id = Integer.parseInt(rolIdText);
+            
+            if (cliente_id <= 0 || rol_id <= 0) {
+                JOptionPane.showMessageDialog(null, "Los IDs deben ser números positivos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        clienteRolController.agregarClienteRol(cliente_id, rol_id);
-        JOptionPane.showMessageDialog(null, "ClienteRol agregado correctamente");
+            clienteRolController.agregarClienteRol(cliente_id, rol_id);
+            JOptionPane.showMessageDialog(null, "ClienteRol agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Los IDs deben ser números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar ClienteRol: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     public void eliminarClienteRol() {
         int id = Integer.parseInt(textID.getText());

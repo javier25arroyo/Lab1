@@ -11,6 +11,9 @@ public class ClienteModel {
     private String telefono;
     private java.sql.Date fechaRegistro;
 
+    public ClienteModel() {
+    }
+
     public ClienteModel(String nombre, String apellido, String email, String telefono, java.sql.Date fechaRegistro, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;

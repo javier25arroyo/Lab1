@@ -36,3 +36,25 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Database Configuration ###
+# Excluir archivos de configuración con credenciales sensibles
+src/main/resources/database.properties
+*.properties
+!*.properties.example
+
+### Environment Variables ###
+.env
+.env.local
+.env.production
+
+### Logs ###
+*.log
+logs/
+
+### Security ###
+# Excluir cualquier archivo que pueda contener credenciales
+**/credentials.*
+**/secrets.*
+config/database.yml
+config/database.json

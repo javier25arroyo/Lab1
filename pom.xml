@@ -14,12 +14,22 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.29</version>
         </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.2.5</version>
+        </dependency>
     </dependencies>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- Database Configuration -->
+        <db.url>jdbc:mysql://45.88.196.5:3306/u484426513_diseno224</db.url>
+        <db.user>u484426513_diseno224</db.user>
+        <db.password>#7cYr646u@*Rp.P</db.password>
     </properties>
 
 </project>

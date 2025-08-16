@@ -1,5 +1,8 @@
 package view;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,11 +19,20 @@ public class MenuForm {
     private JButton CRForm;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("MenuForm");
-        frame.setContentPane(new MenuForm().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,400);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Sistema de Gestión - Menú Principal");
+            frame.setContentPane(new MenuForm().panel1);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(600, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public MenuForm() {

@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.PedidoController;
 import model.Pedido.PedidoModel;
 
@@ -27,11 +28,20 @@ public class PedidoForm {
     private DefaultTableModel tableModel;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("PedidoForm");
-        frame.setContentPane(new PedidoForm().PedidoForm);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Gestión de Pedidos");
+            frame.setContentPane(new PedidoForm().PedidoForm);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1200, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 
     public PedidoForm() {
@@ -77,29 +87,72 @@ public class PedidoForm {
     }
 
     public void agregarPedido() {
-        int clienteId = Integer.parseInt(textClienteID.getText());
-        Date fechaPedido = Date.valueOf(textFecha.getText());
-        double total = Double.parseDouble(textTotal.getText());
-        String estado = textEstado.getText();
+        try {
+            String clienteIdText = textClienteID.getText().trim();
+            String totalText = textTotal.getText().trim();
+            String estado = textEstado.getText().trim();
+            
+            if (clienteIdText.isEmpty() || totalText.isEmpty() || estado.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int clienteId = Integer.parseInt(clienteIdText);
+            if (clienteId <= 0) {
+                JOptionPane.showMessageDialog(null, "El ID del cliente debe ser positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            double total = Double.parseDouble(totalText);
+            if (total < 0) {
+                JOptionPane.showMessageDialog(null, "El total debe ser un valor positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            Date fechaPedido = Date.valueOf(textFecha.getText().trim());
 
-        pedidoController.agregarPedido(clienteId, fechaPedido, total, estado);
-        JOptionPane.showMessageDialog(null, "El pedido fue agregado con éxito");
+            pedidoController.agregarPedido(clienteId, fechaPedido, total, estado);
+            JOptionPane.showMessageDialog(null, "El pedido fue agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Cliente ID y total deben ser números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     public JPanel getPanel() {
         return PedidoForm;
     }
 
     public void buscarPedido() {
-        int id = Integer.parseInt(textID.getText());
-        PedidoModel pedido = pedidoController.getPedidoByID(id);
+        try {
+            String idText = textID.getText().trim();
+            if (idText.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un ID de pedido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int id = Integer.parseInt(idText);
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número positivo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            PedidoModel pedido = pedidoController.getPedidoByID(id);
 
-        if (pedido == null) {
-            JOptionPane.showMessageDialog(null, "Pedido no encontrado");
-        } else {
-            textClienteID.setText(String.valueOf(pedido.getClienteId()));
-            textFecha.setText(pedido.getFechaPedido().toString());
-            textTotal.setText(String.valueOf(pedido.getTotal()));
-            textEstado.setText(pedido.getEstado());
+            if (pedido == null) {
+                JOptionPane.showMessageDialog(null, "Pedido no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                textClienteID.setText(String.valueOf(pedido.getClienteId()));
+                textFecha.setText(pedido.getFechaPedido().toString());
+                textTotal.setText(String.valueOf(pedido.getTotal()));
+                textEstado.setText(pedido.getEstado());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
