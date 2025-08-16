@@ -10,6 +10,7 @@ import java.util.Properties;
 public class Conexion {
     private static final Properties dbProperties = loadDatabaseProperties();
     private static Connection instance = null;
+    private static boolean databaseInitialized = false;
     
     private static Properties loadDatabaseProperties() {
         Properties props = new Properties();
@@ -46,12 +47,57 @@ public class Conexion {
                 
                 instance = DriverManager.getConnection(url, user, password);
                 System.out.println("Conexión establecida exitosamente");
+                
+                // Inicializar base de datos si es la primera conexión
+                if (!databaseInitialized) {
+                    initializeDatabaseSchema();
+                    databaseInitialized = true;
+                }
             }
         } catch (SQLException e){
-            System.err.println("Fallo la conexion: " + e.getMessage());
-            throw new RuntimeException("Error de conexión a la base de datos", e);
+            System.err.println("❌ FALLO EN LA CONEXIÓN A LA BASE DE DATOS");
+            System.err.println("Error: " + e.getMessage());
+            
+            // Análisis específico del error
+            String message = e.getMessage().toLowerCase();
+            if (message.contains("access denied")) {
+                System.err.println("\n🔐 PROBLEMA: Credenciales incorrectas o acceso denegado");
+                System.err.println("💡 SOLUCIONES:");
+                System.err.println("   1. Verificar usuario y contraseña en database.properties");
+                System.err.println("   2. Configurar MySQL local (recomendado)");
+                System.err.println("   3. Contactar administrador del servidor para acceso desde su IP");
+                System.err.println("\n📖 Ver: setup-local-mysql.md para configuración local");
+                System.err.println("🔧 Ejecutar: java model.DatabaseDiagnostic para diagnóstico");
+                
+            } else if (message.contains("unknown host") || message.contains("connection refused")) {
+                System.err.println("\n🌐 PROBLEMA: Servidor no disponible");
+                System.err.println("💡 SOLUCIÓN: Configurar MySQL local (ver setup-local-mysql.md)");
+                
+            } else if (message.contains("unknown database")) {
+                System.err.println("\n🗄️ PROBLEMA: Base de datos no existe");
+                System.err.println("💡 SOLUCIÓN: Crear base de datos 'gestion_db' en MySQL");
+            }
+            
+            throw new RuntimeException("Error de conexión a la base de datos. Ver mensajes anteriores para soluciones.", e);
         }
         return instance;
+    }
+    
+    private static void initializeDatabaseSchema() {
+        try {
+            System.out.println("Inicializando esquema de base de datos...");
+            DatabaseInitializer.initializeDatabase(instance);
+            
+            // Insertar datos de ejemplo si la configuración lo permite
+            String insertSampleData = dbProperties.getProperty("db.insert.sample.data", "true");
+            if ("true".equalsIgnoreCase(insertSampleData)) {
+                DatabaseInitializer.insertSampleData(instance);
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Error al inicializar esquema de base de datos: " + e.getMessage());
+            // No lanzamos excepción aquí para permitir que la aplicación continúe
+        }
     }
     
     public static void closeConnection() {

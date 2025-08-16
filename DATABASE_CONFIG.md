@@ -2,6 +2,20 @@
 
 Este proyecto soporta múltiples formas de configurar la conexión a la base de datos para mayor flexibilidad y seguridad.
 
+## 🚀 Inicialización Automática
+
+**¡NUEVA FUNCIONALIDAD!** La aplicación ahora **crea automáticamente todas las tablas** necesarias al ejecutarse por primera vez. Solo necesita:
+
+1. Configurar la conexión a MySQL
+2. Ejecutar la aplicación 
+3. ¡Las tablas se crean automáticamente!
+
+### Características:
+- ✅ Creación automática de todas las tablas
+- ✅ Datos de ejemplo insertados automáticamente 
+- ✅ Usuario administrador por defecto: `admin@sistema.com` / `admin123`
+- ✅ Roles del sistema preconfigurados
+
 ## 🔧 Métodos de Configuración (en orden de prioridad)
 
 ### 1. Archivo de Propiedades (Recomendado)
@@ -20,9 +34,17 @@ db.password=su_contraseña
 db.driver=com.mysql.cj.jdbc.Driver
 db.connection.timeout=30000
 db.max.pool.size=10
+
+# Configuración de inicialización automática
+db.auto.create.tables=true
+db.insert.sample.data=true
 ```
 
 ⚠️ **IMPORTANTE**: Este archivo está en `.gitignore` y no se subirá al repositorio.
+
+**Opciones de inicialización:**
+- `db.auto.create.tables=true`: Crea las tablas automáticamente si no existen
+- `db.insert.sample.data=true`: Inserta datos de ejemplo (roles y usuario admin)
 
 ### 2. Variables de Entorno
 Configure las siguientes variables de entorno:

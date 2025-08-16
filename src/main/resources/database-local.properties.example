@@ -1,0 +1,22 @@
+# Configuración para Base de Datos Local
+# Copie este archivo como database.properties para usar MySQL local
+
+# Configuración de la base de datos LOCAL
+db.url=jdbc:mysql://localhost:3306/gestion_db
+db.user=root
+db.password=tu_password_local
+
+# Configuración adicional
+db.driver=com.mysql.cj.jdbc.Driver
+db.connection.timeout=30000
+db.max.pool.size=10
+
+# Configuración de inicialización automática
+db.auto.create.tables=true
+db.insert.sample.data=true
+
+# Configuración específica para desarrollo local
+# Permite conexiones sin SSL (para desarrollo)
+db.useSSL=false
+db.allowPublicKeyRetrieval=true
+db.serverTimezone=UTC
