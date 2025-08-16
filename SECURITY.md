@@ -35,7 +35,7 @@ Las siguientes versiones del Sistema de Gestión Empresarial están siendo mante
 Si descubre una vulnerabilidad de seguridad, por favor:
 
 1. **NO** cree un issue público en GitHub
-2. **SÍ** envíe un email a: [javier25arroyo@correo.com]
+2. **SÍ** envíe un email a: [javier25arroyo@gmail.com]
 3. **SÍ** incluya los detalles en el reporte
 
 ### Qué Incluir en el Reporte
