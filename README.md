@@ -1,118 +1,171 @@
-# Employee and Client Role Management System
+# 🏢 Sistema de Gestión Empresarial
 
-This project is a Java-based application for managing employees and client roles. It allows users to add, update, search, and delete employees and their associated roles.
+Sistema completo de gestión empresarial desarrollado en Java con interfaz gráfica Swing, que permite administrar clientes, empleados, productos, proveedores, pedidos y roles de usuario.
 
-## Project Structure
+## 🚀 Características Principales
 
-### Models
+- ✅ **Inicialización automática de base de datos** - Crea todas las tablas automáticamente
+- ✅ **Gestión completa de entidades** - Clientes, empleados, productos, proveedores, pedidos y roles
+- ✅ **Interfaz gráfica moderna** - FlatLaf Look & Feel para mejor experiencia de usuario
+- ✅ **Sistema de autenticación** - Login con roles de usuario
+- ✅ **Validaciones robustas** - Validación de datos en formularios
+- ✅ **Múltiples opciones de configuración** - Archivos de propiedades, variables de entorno
 
-- **EmpleadoModel**: Represents an employee with attributes such as `empleado_id`, `nombre`, `apellido`, `cargo`, `salario`, and `fecha_contratacion`.
-- **ClienteRolModel**: Represents the relationship between a client and a role.
+## 📁 Estructura del Proyecto
 
-### Controllers
+### 🎯 Modelos (Models)
+- **ClienteModel**: Gestión de información de clientes
+- **EmpleadoModel**: Datos de empleados (ID, nombre, apellido, cargo, salario, fecha contratación)
+- **ProductoModel**: Catálogo de productos con precios y stock
+- **ProveedorModel**: Información de proveedores
+- **PedidoModel**: Gestión de pedidos de clientes
+- **RolModel**: Roles del sistema (ADMIN, USER, MANAGER)
+- **ClienteRolModel**: Relación entre clientes y roles
 
-- **EmpleadoController**: Manages CRUD (Create, Read, Update, Delete) operations for employees.
-- **ClienteRolController**: Manages CRUD operations for client roles.
+### 🎮 Controladores (Controllers)
+- **ClienteController**: CRUD de clientes
+- **EmpleadoController**: CRUD de empleados
+- **ProductoController**: CRUD de productos
+- **ProveedorController**: CRUD de proveedores
+- **PedidoController**: CRUD de pedidos
+- **RolController**: CRUD de roles
+- **ClienteRolController**: Gestión de roles de clientes
 
-### Views
+### 🖥️ Vistas (Views)
+- **MenuForm**: Menú principal de navegación
+- **LoginForm**: Formulario de autenticación
+- **ClienteForm**: Gestión de clientes
+- **EmpleadoForm**: Gestión de empleados
+- **ProductoForm**: Gestión de productos
+- **ProveedorForm**: Gestión de proveedores
+- **PedidoForm**: Gestión de pedidos
+- **RolForm**: Gestión de roles
+- **ClienteRolForm**: Asignación de roles a clientes
 
-- **EmpleadoForm**: GUI for managing employees. Allows adding, updating, searching, and deleting employees.
-- **ClienteRolForm**: GUI for managing client roles. Allows adding, updating, searching, and deleting client roles.
+### 🔧 Utilidades
+- **Conexion**: Gestión de conexiones a base de datos
+- **DatabaseInitializer**: Inicialización automática de tablas
+- **DatabaseDiagnostic**: Herramienta de diagnóstico de conexión
 
-### Database Connection
+## ⚙️ Requisitos
 
-- **Conexion**: Manages the database connection using environment variables `DB_URL`, `DB_USER`, and `DB_PASSWORD`.
+- **Java 21** o superior
+- **Maven 3.6+**
+- **MySQL 8.0+** (o XAMPP para desarrollo local)
+- **Git** para control de versiones
 
-## Requirements
+## 🛠️ Instalación y Configuración
 
-- Java 8 or higher
-- Maven
-- MySQL Database
-
-## Configuration
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/javier25arroyo/Lab1.git
-    cd Lab1
-    ```
-
-2. Set up the environment variables for the database connection:
-    ```bash
-    export DB_URL=jdbc:mysql://localhost:3306/your_database
-    export DB_USER=your_username
-    export DB_PASSWORD=your_password
-    ```
-
-3. Build the project with Maven:
-    ```bash
-    mvn clean install
-    ```
-
-## Execution
-
-To run the application, execute the main class of the desired form:
-
-For `EmpleadoForm`:
+### 1. Clonar el repositorio
 ```bash
-mvn exec:java -Dexec.mainClass="view.EmpleadoForm"
+git clone https://github.com/javier25arroyo/Lab1.git
+cd Lab1
 ```
 
-# Sistema de Gestión de Empleados y Roles de Clientes
+### 2. Configurar Base de Datos
 
-Este proyecto es una aplicación basada en Java para gestionar empleados y roles de clientes. Permite a los usuarios agregar, actualizar, buscar y eliminar empleados y sus roles asociados.
-
-## Estructura del Proyecto
-
-### Modelos
-
-- **EmpleadoModel**: Representa un empleado con atributos como `empleado_id`, `nombre`, `apellido`, `cargo`, `salario` y `fecha_contratacion`.
-- **ClienteRolModel**: Representa la relación entre un cliente y un rol.
-
-### Controladores
-
-- **EmpleadoController**: Gestiona las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para empleados.
-- **ClienteRolController**: Gestiona las operaciones CRUD para roles de clientes.
-
-### Vistas
-
-- **EmpleadoForm**: Interfaz gráfica para gestionar empleados. Permite agregar, actualizar, buscar y eliminar empleados.
-- **ClienteRolForm**: Interfaz gráfica para gestionar roles de clientes. Permite agregar, actualizar, buscar y eliminar roles de clientes.
-
-### Conexión a la Base de Datos
-
-- **Conexion**: Gestiona la conexión a la base de datos utilizando las variables de entorno `DB_URL`, `DB_USER` y `DB_PASSWORD`.
-
-## Requisitos
-
-- Java 8 o superior
-- Maven
-- Base de datos MySQL
-
-## Configuración
-
-1. Clona el repositorio:
-    ```bash
-    git clone https://github.com/javier25arroyo/Lab1.git
-    cd Lab1
-    ```
-
-2. Configura las variables de entorno para la conexión a la base de datos:
-    ```bash
-    export DB_URL=jdbc:mysql://localhost:3306/tu_base_de_datos
-    export DB_USER=tu_usuario
-    export DB_PASSWORD=tu_contraseña
-    ```
-
-3. Compila el proyecto con Maven:
-    ```bash
-    mvn clean install
-    ```
-
-## Ejecución
-
-Para ejecutar la aplicación, ejecuta la clase principal del formulario deseado:
-
-Para `EmpleadoForm`:
+#### Opción A: XAMPP (Recomendado para desarrollo)
 ```bash
-mvn exec:java -Dexec.mainClass="view.EmpleadoForm"
+# 1. Instalar XAMPP desde https://www.apachefriends.org/
+# 2. Iniciar MySQL en XAMPP Control Panel
+# 3. Crear base de datos 'gestion_db' en phpMyAdmin (localhost/phpmyadmin)
+```
+
+#### Opción B: MySQL Standalone
+```bash
+# Crear base de datos
+CREATE DATABASE gestion_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 3. Configurar Conexión
+
+Copiar y editar el archivo de configuración:
+```bash
+cp src/main/resources/database.properties.example src/main/resources/database.properties
+```
+
+Editar `database.properties`:
+```properties
+# Para XAMPP
+db.url=jdbc:mysql://localhost:3306/gestion_db
+db.user=root
+db.password=
+
+# Para MySQL standalone
+db.url=jdbc:mysql://localhost:3306/gestion_db
+db.user=tu_usuario
+db.password=tu_contraseña
+
+# Configuración de inicialización
+db.auto.create.tables=true
+db.insert.sample.data=true
+```
+
+### 4. Compilar el proyecto
+```bash
+mvn clean compile
+```
+
+## 🚀 Ejecución
+
+### Aplicación Principal
+```bash
+java -cp "target/classes:dependencias/*" view.MenuForm
+```
+
+### Diagnóstico de Conexión
+```bash
+java -cp "target/classes:dependencias/*" model.DatabaseDiagnostic
+```
+
+### Usuario por Defecto
+- **Email**: `admin@sistema.com`
+- **Contraseña**: `admin123`
+
+## 🧪 Testing
+
+Verificar la conexión antes de usar la aplicación:
+```bash
+java -cp "target/classes:dependencias/*" model.DatabaseDiagnostic
+```
+
+## 📚 Documentación Adicional
+
+- 📊 [**Esquema de Base de Datos**](DATABASE_SCHEMA.md) - Estructura completa de tablas y relaciones
+- ⚙️ [**Configuración de BD**](DATABASE_CONFIG.md) - Guía detallada de configuración
+- 🔧 [**Solución de Conexión**](SOLUCION_CONEXION.md) - Resolución de problemas de conectividad
+- 🚀 [**Setup MySQL Local**](setup-local-mysql.md) - Configuración rápida con XAMPP
+- 🔒 [**Política de Seguridad**](SECURITY.md) - Información de seguridad del proyecto
+
+## 🆘 Resolución de Problemas
+
+### Error de Conexión
+Si experimenta problemas de conexión, ejecute el diagnóstico:
+```bash
+java -cp "target/classes:dependencias/*" model.DatabaseDiagnostic
+```
+
+### Problemas Comunes
+- **"Driver not found"**: Verificar dependencias Maven con `mvn clean compile`
+- **"Unknown database"**: Crear la base de datos `gestion_db` manualmente
+- **"Access denied"**: Verificar credenciales en `database.properties`
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crear una rama feature (`git checkout -b feature/NuevaCaracteristica`)
+3. Commit los cambios (`git commit -m 'Agregar nueva característica'`)
+4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
+5. Abrir un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👨‍💻 Autores
+
+- **Javier Arroyo** - *Desarrollo inicial* - [javier25arroyo](https://github.com/javier25arroyo)
+
+---
+
+⭐ **¡Dale una estrella al proyecto si te fue útil!**

@@ -50,8 +50,8 @@ db.insert.sample.data=true
 Configure las siguientes variables de entorno:
 
 ```bash
-export DB_URL="jdbc:mysql://su-servidor:3306/su_base_de_datos"
-export DB_USER="su_usuario"
+export DB_URL="jdbc:mysql://localhost:3306/gestion_db"
+export DB_USER="root"
 export DB_PASSWORD="su_contraseña"
 ```
 
@@ -60,8 +60,8 @@ Para desarrollo, puede modificar las propiedades en `pom.xml`:
 
 ```xml
 <properties>
-    <db.url>jdbc:mysql://localhost:3306/su_base_de_datos</db.url>
-    <db.user>su_usuario</db.user>
+    <db.url>jdbc:mysql://localhost:3306/gestion_db</db.url>
+    <db.user>root</db.user>
     <db.password>su_contraseña</db.password>
 </properties>
 ```

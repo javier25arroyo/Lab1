@@ -12,6 +12,7 @@ public class DatabaseInitializer {
             
             createRolesTable(connection);
             createClientesTable(connection);
+            createUsuariosTable(connection);
             createEmpleadosTable(connection);
             createProveedoresTable(connection);
             createProductosTable(connection);
@@ -58,6 +59,29 @@ public class DatabaseInitializer {
             """;
         
         executeSQL(connection, sql, "clientes");
+    }
+    
+    private static void createUsuariosTable(Connection connection) throws SQLException {
+        String sql = """
+            CREATE TABLE IF NOT EXISTS usuarios (
+                usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+                nombre VARCHAR(100) NOT NULL,
+                apellido VARCHAR(100) NOT NULL,
+                email VARCHAR(150) NOT NULL UNIQUE,
+                contrasena VARCHAR(255) NOT NULL,
+                telefono VARCHAR(20),
+                estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO',
+                fecha_registro DATE NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                INDEX idx_email (email),
+                INDEX idx_nombre (nombre, apellido),
+                INDEX idx_estado (estado),
+                CHECK (estado IN ('ACTIVO', 'INACTIVO', 'SUSPENDIDO'))
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """;
+        
+        executeSQL(connection, sql, "usuarios");
     }
     
     private static void createEmpleadosTable(Connection connection) throws SQLException {
@@ -176,6 +200,9 @@ public class DatabaseInitializer {
             // Insertar un cliente administrador por defecto
             insertDefaultAdmin(connection);
             
+            // Insertar usuarios por defecto
+            insertDefaultUsers(connection);
+            
             System.out.println("Datos de ejemplo insertados correctamente");
             
         } catch (SQLException e) {
@@ -209,6 +236,25 @@ public class DatabaseInitializer {
             int rowsAffected = stmt.executeUpdate(sql);
             if (rowsAffected > 0) {
                 System.out.println("✓ Usuario administrador por defecto creado (admin@sistema.com / admin123)");
+            }
+        }
+    }
+    
+    private static void insertDefaultUsers(Connection connection) throws SQLException {
+        String sql = """
+            INSERT IGNORE INTO usuarios (nombre, apellido, email, contrasena, telefono, estado, fecha_registro) VALUES
+            ('Administrador', 'Sistema', 'admin@usuarios.com', 'admin123', '1234567890', 'ACTIVO', CURDATE()),
+            ('Usuario', 'Demo', 'demo@usuarios.com', 'demo123', '0987654321', 'ACTIVO', CURDATE()),
+            ('Gerente', 'Prueba', 'gerente@usuarios.com', 'gerente123', '5555555555', 'ACTIVO', CURDATE())
+            """;
+        
+        try (Statement stmt = connection.createStatement()) {
+            int rowsAffected = stmt.executeUpdate(sql);
+            if (rowsAffected > 0) {
+                System.out.println("✓ Usuarios por defecto creados: " + rowsAffected + " registros");
+                System.out.println("  - admin@usuarios.com / admin123");
+                System.out.println("  - demo@usuarios.com / demo123");
+                System.out.println("  - gerente@usuarios.com / gerente123");
             }
         }
     }

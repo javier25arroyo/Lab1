@@ -17,6 +17,7 @@ public class MenuForm {
     private JButton ProveedorForm;
     private JButton RolForm;
     private JButton CRForm;
+    private JButton UsuarioForm;
 
     public static void main(String[] args) {
         try {
@@ -82,6 +83,13 @@ public class MenuForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CRForm();
+            }
+        });
+
+        UsuarioForm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirUsuarioForm();
             }
         });
     }
@@ -157,6 +165,16 @@ public class MenuForm {
         frame.setContentPane(clienteRolForm.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1000,500);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private void abrirUsuarioForm() {
+        JFrame frame = new JFrame("Gestión de Usuarios");
+        UsuarioForm usuarioForm = new UsuarioForm();
+        frame.setContentPane(usuarioForm.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(1000,600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
